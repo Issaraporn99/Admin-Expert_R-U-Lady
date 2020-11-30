@@ -21,7 +21,7 @@
     <?php endif ?> -->
 
       <div class="box-header with-border">
-        <h3 class="tc">แก้ไขอาการของโรค</h3>
+        <h3 class="tc">แก้ไขอาการของโรค </h3>
       </div>
     <!-- Main content -->
     <section class="content">
@@ -62,12 +62,15 @@
           <div class="box">
             <!-- /.box-header -->
             <div class="box-body">
+            
         <table id="example1" class="table table-bordered table-striped">
+
           <thead>
           <tr>
-            <th width='3%'>ที่</th>       
-            <th width='15%'>อาการ</th>
-            <th width='8%'>ลบ</th>
+            <th width='5%'>ที่</th>       
+            <th width='60%'>อาการ</th>
+            <th width='3%'><a href="apiAD.php?delete2=<?php echo $row['disease_id']; ?>"
+                  class="btn btn-danger btn-flat fl">ลบอาการทั้งหมด</a></th>
           </tr>
           </thead>     
           <tbody>
@@ -75,18 +78,14 @@
                 while ($row = $dissymtable->fetch_assoc()): ?>
           <tr> 
             <td><?php echo $i; ?></td>
-            <td><?php echo $row['symptom_name']; ?></td>       
-            <td>
-                <!-- <a href="editSymDis.php?edit2=<?php echo $row['disease_id']; ?>"
-                  class="btn bg-orange btn-flat"><i class="fa fa-fw fa-edit"></i></a> -->
-                <a href="apiAD.php?delete2=<?php echo $row['symptom_id']; ?>"
-                  class="btn btn-danger btn-flat"><span class="glyphicon glyphicon-trash"></span></a>
-            </td>
+            <td><?php echo $row['symptom_name']; ?></td>   
+            <td></td>    
           </tr>
           <?php $i++; ?>
           <?php endwhile; ?> 
           </tbody>   
         </table>
+
         </div>
   </div>
     </section>

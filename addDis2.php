@@ -23,7 +23,7 @@
        
            
         <a href="editSymDis.php?edit=<?php echo $disease_id; ?>"
-                  class="btn bg-orange btn-flat"><i class="fa fa-fw fa-edit"></i></a>
+                  class="">แก้ไขอาการ<i class="fa fa-fw fa-edit"></i></a>
     
       </div>
     <!-- Main content --> 
