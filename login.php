@@ -23,7 +23,7 @@ session_start();
            
 
             if ($_SESSION['userlevel'] == 'a') {
-                header("Location: index1.php");
+                header("Location: index4.php");
             }
 
             if ($_SESSION['userlevel'] == 'm') {
