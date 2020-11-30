@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 5rem;
+    text-align: center;
+    font-family: 'Prompt', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+input {
+    padding: 1rem 3rem;
+}
+
+h1 {
+    margin: 1rem;
+}
+
+.success {
+    width: 50%;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #3c763d;
+    color: #3c763d;
+    background: #dff0d8;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.error {
+    width: 50%;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #a94442;
+    color: #a94442;
+    background: #f2dede;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 120%;
+    background: #f8f8f8;
+    font-family: 'Prompt', sans-serif;
+}
+
+.header {
+    width: 30%;
+    margin: 50px auto 0px;
+    color: white;
+    background: #5f9ea0;
+    text-align: center;
+    border: 1px solid #b0c4de;
+    border-bottom: none;
+    border-radius: 10px 10px 0px 0px;
+    padding: 20px;
+}
+
+/* form {
+    width: 30%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #b0c4de;
+    background: white;
+    border-radius: 0px 0px 10px 10px;
+    font-family: 'Prompt', sans-serif;
+} */
+
+.homeheader {
+    text-align: center;
+    font-size: 5rem;
+    font-family: 'Prompt', sans-serif;
+}
+
+.homecontent {
+    text-align: center;
+    padding-top: 3rem;
+    width: 100%;
+    background: #ccc;
+    height: 100vh;
+}
+
+.input-group {
+    margin: 10px 0px 10px 0px;
+    font-family: 'Prompt', sans-serif;
+}
+
+.input-group label {
+    display: block;
+    text-align: left;
+    margin: 3px;
+    font-family: 'Prompt', sans-serif;
+}
+
+.input-group input {
+    height: 40px;
+    width: 93%;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-family: 'Prompt', sans-serif;
+}
+.input-group select {
+    height: 40px;
+    width: 93%;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-family: 'Prompt', sans-serif;
+}
+
+.btn {
+    padding: 10px;
+    font-size: 15px;
+    color: white;
+    background: #5f9ea0;
+    border: none;
+    border-radius: 5px;
+    width: 93%;
+    font-family: 'Prompt', sans-serif;
+}
+
+.error {
+    width: 92%;
+    margin: 0px auto;
+    padding: 10px;
+    border: 1px solid #a94442;
+    color: #a94442;
+    background: #f2dede;
+    border-radius: 5px;
+    text-align: left;
+}
+.success {
+    color: #3c763d;
+    background: #dff9d8;
+    border: 1px solid #3c763d;
+    margin-bottom: 20px;
+}

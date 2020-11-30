@@ -1,0 +1,70 @@
+<?php
+@session_start();
+$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
+$update = false;
+$symptom_id = 0;
+if (isset($_POST['saveAD'])){
+ 
+    $maxdisss = $mysqli->query("SELECT MAX(articles_id)AS MAX from articles where articles_id")or die($mysqli); 
+    foreach($maxdisss as $results)
+        $maxxx= $results['MAX'];
+    
+    foreach ($_SESSION['nameArticles'] as $ad ) {
+        $mysqli->query("INSERT INTO articles_disease (articles_id,disease_id) VALUES ('$maxxx','$ad')")or die($mysqli->error);
+      }
+   
+   unset($_SESSION['nameArticles']);
+   header("location: articlesShow.php");
+   }
+// -----------------------------------------------------------------------------------------------------//
+?>
+
+
+<?php 
+if (isset($_POST['save2'])){
+    $symptom_id = $_POST['symptom_id'];
+    $disease_id = $_POST['disease_id'];
+    $mysqli->query("INSERT INTO disease_symptoms (symptom_id,disease_id) 
+                    VALUES ('$symptom_id','$disease_id')")or die($mysqli->error);
+//    header("location: editSymDis.php");
+echo "<script>";
+echo "alert(\"แก้ไขข้อมูลเรียบร้อย\");";
+echo "window.history.back()";
+echo "</script>";
+   }
+if (isset($_GET['edit2'])){
+    $symptom_id = $_GET['edit2'];
+    $update = true;
+    $result = $mysqli->query("SELECT * FROM disease_symptoms WHERE symptom_id=$symptom_id")or die($mysqli->error());
+
+    $row = $result->fetch_array();
+    $symptom_id = $row['symptom_id']; 
+    $disease_id = $row['disease_id'];  
+    
+}
+if (isset($_POST['update2'])){
+    $symptom_id = $_POST['symptom_id'];
+    $disease_id = $_POST['disease_id'];
+
+    $mysqli->query("UPDATE disease_symptoms SET symptom_id='$symptom_id', disease_id='$disease_id' 
+                    WHERE symptom_id=$symptom_id && disease_id=$disease_id") or die($mysqli->error);
+
+    $_SESSION['message'] = "แก้ไขข้อมูลสำเร็จ";
+    $_SESSION['msg_type'] = "warning";
+
+    header('location: editSymDis.php');
+}
+if (isset($_GET['delete2'])){
+    $symptom_id = $_GET['delete2'];
+    $mysqli->query("DELETE FROM disease_symptoms WHERE symptom_id=$symptom_id")or die($mysqli->error());
+
+    $_SESSION['message'] = "ลบข้อมูลสำเร็จ";
+    $_SESSION['msg_type'] = "danger";
+
+    echo "<script>";
+    echo "alert(\"ลบข้อมูลเรียบร้อย\");";
+    echo "window.history.back()";
+    echo "</script>";
+
+}
+?>
