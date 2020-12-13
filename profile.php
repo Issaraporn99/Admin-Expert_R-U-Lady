@@ -6,12 +6,11 @@ session_start();
     } else {
         include('includes/header2.php'); 
 ?>
-
+<?php require_once 'profileApi.php'; ?>
   <!-- Main content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="box box-danger">
-  <form role="form">
               <div class="box-body">            
               <div class="box-header with-border">
                   <h3 class="tc">ข้อมูลส่วนตัว</h3>
@@ -26,21 +25,23 @@ session_start();
     $i=1;
   
  ?>
-
  <div class="box box-danger">
 
       <div class="box-body ml-5"> 
         <?php
             while ($row = $result->fetch_assoc()):?>   
-            <p>ชื่อ-นามสกุล : <?php echo $row['doctorname']; ?></p>       
+            <p>ชื่อ-นามสกุล : <?php echo $row['doctorname']; ?>
+              <a href="profileEdit.php?edit=<?php echo $row['id']; ?>"class="ml-2">
+                <i class="fa fa-fw fa-edit"></i>
+              </a>
+            </p>       
             <p>สถานที่ทำงาน : <?php echo $row['office']; ?></p>
             <p>สาขาความเชี่ยวชาญ : <?php echo $row['expertise_name']; ?></p>
             
       
         <?php endwhile; ?>  
     </div>
-  </div>
-  </form>   
+  </div>  
   </div>
   </div>
   <!-- /.content-wrapper -->

@@ -1,7 +1,7 @@
 <?php 
 // Define file upload path 
 $upload_dir = array( 
-    'img'=> '../articlesIMG/', 
+    'img'=> '../articlesIMG', 
 ); 
  
 // Allowed image properties  
