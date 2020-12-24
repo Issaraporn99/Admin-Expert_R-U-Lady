@@ -43,22 +43,22 @@
        
             <div class="form-group col-md-6 ">
                   <label>รายละเอียด</label>
-                  <textarea id="editor2" class="form-control" cols="20" rows="4" placeholder="รายละเอียด ..." 
+                  <textarea id="aa" class="form-control" cols="20" rows="4" placeholder="รายละเอียด ..." 
                   name="disease_detail" ><?php echo $disease_detail;?></textarea>
             </div> 
             <div class="form-group col-md-6 ">
                   <label>สาเหตุของการเกิดโรค</label>
-                  <textarea id="editor3" class="form-control" cols="20" rows="4" placeholder="สาเหตุของการเกิดโรค ..." 
+                  <textarea id="editor7" class="form-control" cols="20" rows="4" placeholder="สาเหตุของการเกิดโรค ..." 
                   name="disease_cause" ><?php echo $disease_cause;?></textarea>
             </div> 
             <div class="form-group col-md-6">
                   <label>การป้องกัน</label>
-                  <textarea id="editor4" class="form-control" rows="4" placeholder="การป้องกัน ..." 
+                  <textarea id="editor8" class="form-control" rows="4" placeholder="การป้องกัน ..." 
                   name="disease_defence"><?php echo $disease_defence;?></textarea>
-            </div>        
+            </div>       
             <div class="form-group col-md-6">
                   <label>การรักษา</label>
-                  <textarea id="editor5" class="form-control" rows="4" placeholder="การรักษา ..." 
+                  <textarea id="editor9" class="form-control" rows="4" placeholder="การรักษา ..." 
                   name="disease_treatment"><?php echo $disease_treatment;?></textarea>
             </div>
  <div class="row box-body ">
@@ -110,6 +110,6 @@
   </div>
   <!-- /.content-wrapper -->
   <?php include('includes/scripts.php'); 
-   include('includes/scriptsAddDis.php'); 
- include('includes/footer.php'); 
+        include('includes/scriptsAddDis.php'); 
+        include('includes/footer.php'); 
  ?>

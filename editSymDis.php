@@ -27,7 +27,7 @@
     <section class="content">
               <div class="box-body">
  <?php 
-    $mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
+    $mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
     $dis = $mysqli->query("SELECT * FROM disease")or die($mysqli);
     $dissymtable = $mysqli->query("SELECT * FROM `disease_symptoms` INNER JOIN `symptom` USING(`symptom_id`) WHERE `disease_id`=$disease_id")or die($mysqli);
     $i=1;

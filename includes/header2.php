@@ -70,10 +70,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
-                <p><a href="../logout.php" class="btn btn-block btn-default margin">ออกจากระบบ</a></p>
+                <p><a href="logout.php" class="btn btn-block btn-default margin">ออกจากระบบ</a></p>
                 </div>
                 <div class="pull-left">
-                <a href="../profile.php"class="btn bg-maroon margin">ข้อมูลส่วนตัว</a></button>
+                <a href="profile.php"class="btn bg-maroon margin">ข้อมูลส่วนตัว</a></button>
                 </div>
               </li>
             </ul>

@@ -81,7 +81,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
-                <p><a href="../logout.php">ออกจากระบบ</a></p>
+                <p><a href="logout.php">ออกจากระบบ</a></p>
                 </div>
               </li>
             </ul>
