@@ -9,6 +9,7 @@ session_start();
  <?php 
  $id=$_SESSION['userid'];
  $i=1;
+ //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
  $mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
     $result = $mysqli->query("SELECT * FROM question INNER JOIN user USING(`expertise_id`) WHERE user.id=$id ORDER BY `question_date` DESC")or die($mysqli); 
      

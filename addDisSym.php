@@ -19,7 +19,8 @@
   <?php endif ?> -->
       <div class="box-header with-border">
       <?php
-    $mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
+    //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
+    $mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
     $maxdis = $mysqli->query("SELECT MAX(disease_id)as MAX , `disease_name` FROM disease where disease_id")or die($mysqli); 
     foreach( $maxdis as $results)
     $max= $results['MAX'];
@@ -58,7 +59,8 @@
             $mysqli->query("INSERT INTO disease_symptoms (symptom_id,disease_id) VALUES ('$key','$max')")or die($mysqli->error);
           }
         }
-            $mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
+            // $mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
+            $mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
             $result = $mysqli->query("SELECT * FROM symptom order by CONVERT( symptom_name USING tis620 ) ASC")or die($mysqli);
         ?>
         

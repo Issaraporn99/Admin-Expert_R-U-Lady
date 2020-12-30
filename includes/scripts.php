@@ -367,13 +367,13 @@ $('.table').DataTable();
 <script src="ckeditor/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('sssss', {
-        filebrowserUploadUrl: 'includes/ck_upload.php',
+        filebrowserUploadUrl: 'ck_upload.php',
         filebrowserUploadMethod: 'form'
     });
 </script>
 <script>
     CKEDITOR.replace('aa', {
-        filebrowserUploadUrl: 'includes/ck_upload.php',
+        filebrowserUploadUrl: 'ck_upload.php',
         filebrowserUploadMethod: 'form'
     });
 </script>

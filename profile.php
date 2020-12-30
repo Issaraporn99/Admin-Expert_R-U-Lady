@@ -20,6 +20,7 @@ session_start();
                      
  <?php 
     $user=$_SESSION['userid'];
+    //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
     $mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
     $result = $mysqli->query("SELECT * FROM `user` LEFT JOIN expertise USING(expertise_id) WHERE `id`= $user")or die($mysqli);
     $i=1;

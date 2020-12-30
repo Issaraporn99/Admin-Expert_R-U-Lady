@@ -1,5 +1,6 @@
 <?php
 @session_start();
+//$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
 $mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
 $organ_name = '';
 $update=false;

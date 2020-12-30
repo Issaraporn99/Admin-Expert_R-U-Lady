@@ -5,49 +5,49 @@
 <script src="includes/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('editor2', {
-        filebrowserUploadUrl: 'includes/ck_upload.php',
+        filebrowserUploadUrl: 'ck_upload.php',
         filebrowserUploadMethod: 'form'
     });
 </script>
 <script>
     CKEDITOR.replace('editor3', {
-        filebrowserUploadUrl: 'includes/ck_upload.php',
+        filebrowserUploadUrl: 'ck_upload.php',
         filebrowserUploadMethod: 'form'
     });
 </script>
 <script>
     CKEDITOR.replace('editor4', {
-        filebrowserUploadUrl: 'includes/ck_upload.php',
+        filebrowserUploadUrl: 'ck_upload.php',
         filebrowserUploadMethod: 'form'
     });
 </script>
 <script>
     CKEDITOR.replace('editor5', {
-        filebrowserUploadUrl: 'includes/ck_upload.php',
+        filebrowserUploadUrl: 'ck_upload.php',
         filebrowserUploadMethod: 'form'
     });
 </script>
 <script>
     CKEDITOR.replace('editor6', {
-        filebrowserUploadUrl: 'includes/ck_upload.php',
+        filebrowserUploadUrl: 'ck_upload.php',
         filebrowserUploadMethod: 'form'
     });
 </script>
 <script>
     CKEDITOR.replace('editor7', {
-        filebrowserUploadUrl: 'includes/ck_upload.php',
+        filebrowserUploadUrl: 'ck_upload.php',
         filebrowserUploadMethod: 'form'
     });
 </script>
 <script>
     CKEDITOR.replace('editor8', {
-        filebrowserUploadUrl: 'includes/ck_upload.php',
+        filebrowserUploadUrl: 'ck_upload.php',
         filebrowserUploadMethod: 'form'
     });
 </script>
 <script>
     CKEDITOR.replace('editor9', {
-        filebrowserUploadUrl: 'includes/ck_upload.php',
+        filebrowserUploadUrl: 'ck_upload.php',
         filebrowserUploadMethod: 'form'
     });
 </script>

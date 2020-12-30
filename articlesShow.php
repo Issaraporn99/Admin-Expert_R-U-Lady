@@ -23,7 +23,8 @@ if (!$_SESSION['userid']) {
                      
  <?php 
     $user=$_SESSION['userid'];
-    $mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
+    $mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
+    //$mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
     $result = $mysqli->query("SELECT * FROM articles INNER JOIN user USING(`id`) WHERE user.`id` =$user")or die($mysqli);
     $i=1;
  ?>
