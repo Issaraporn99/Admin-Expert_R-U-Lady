@@ -14,45 +14,40 @@ if (!$_SESSION['userid']) {
 
     <?php 
     //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
+    
     $mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
     $dis = $mysqli->query("SELECT * FROM disease")or die($mysqli);
- ?>
-  <?php 
-  error_reporting(0);
-  $disArticles=array();
-  $disArticles=$_SESSION['nameArticles'];
-  if(isset($_GET["disease_id"])){
-  $disArticles2=$_GET["disease_id"];
+    $maxdisss = $mysqli->query("SELECT MAX(articles_id)AS MAX from articles where articles_id")or die($mysqli); 
+    foreach($maxdisss as $results)
+        $maxxx= $results['MAX'];
 
-  $_SESSION['nameArticles'][]= $disArticles2;
-  $disArticles=$_SESSION['nameArticles'];
-  
-  }
-  if(isset($_GET["deletedisArticles"])){
-             //session_destroy(); 
-  unset($disArticles[$_GET["deletedisArticles"]]);
-  $_SESSION['disArticles']= $disArticles;             
-  }
-    
+ ?>
+<?php 
+      $dissymtable = $mysqli->query("SELECT * FROM `articles_disease` INNER JOIN `disease` USING(`disease_id`) WHERE `articles_id`=$maxxx")or die($mysqli);
 ?>
       <div class="box-header with-border">
         <h3 class="box-title">บทความนี้เกี่ยวข้องกับโรคอะไรบ้าง</h3>
       </div>
-      <form>
-          <div class="box-body"> 
+      <form action="apiAD.php" method="POST">
+      <div class="box-body"> 
                   <div class="row">
                     <div class="col-md-4">
-                        <label>โรค</label>
-                        <select name="disease_id" class="form-control select2">
-                        <?php foreach($dis as $diss){?>
-                          <option value="<?php echo $diss['disease_id']; ?> <?php echo $diss['disease_name']; ?>"><?php echo $diss['disease_name']; ?></option>
-                        <?php } ?> 
-                        </select>                                      
-                    </div> 
-                    <div class="col-md-4"> 
-                      <button type="submit" class="btn bg-maroon mt-10">เพิ่ม</button> 
-                    </div> 
-                  </div> 
+                  <label>เลือกโรค</label>
+                  <select name="disease_id" class="form-control select2" >
+                  <?php foreach($dis as $results){?>
+                    <option value="<?php echo $results['disease_id']; ?>"><?php echo $results['disease_name']; ?></option>
+                  <?php } ?> 
+                  </select>                
+                </div> 
+              
+                <div class="col-md-4 mt-3"> 
+                <input type="hidden" name="articles_id" value="<?php echo $articles_id; ?>">               
+                        <button type="submit" class="btn bg-navy btn-flat ml-5" name="saveAD">บันทึก</button>
+                </div>          
+            
+              </div>                                   
+      </div>           
+                  </form>
                    <!-- ตารางแสดงโรคที่เกี่ยวข้อง  -->
               <div class="box-body">  
            <div class="box">
@@ -62,22 +57,21 @@ if (!$_SESSION['userid']) {
                 <tr>
                     <th width='3%'>ที่</th>
                     <th width='40%'>โรค</th>
-                    <th width='5%'>ลบ</th>
+                    <th width='3%'><a href="apiAD.php?deleteAD=<?php echo $maxxx; ?>"
+                  class="btn btn-danger btn-flat fl">ลบโรคทั้งหมด</a></th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php $i=0?>
-                <?php if ($_SESSION['nameArticles'] != ''){
-                  foreach($disArticles as $key){ ?>
-               
-                <tr>
-                    <td><?php echo $i+1 ?></td>
-                    <td><?php echo $key ?></td>
-                    <td class="wid20"><a href="articlesDis.php?deletedisArticles=<?php echo $i ?>"
-               class="btn btn-danger btn-flat"><span class="glyphicon glyphicon-trash"></span></a></td>
-               <?php $i++?>
-                </tr>
-                <?php }} ?> 
+                <?php
+          $a=1;
+                while ($row = $dissymtable->fetch_assoc()): ?>
+          <tr> 
+            <td><?php echo $a; ?></td>
+            <td><?php echo $row['disease_name']; ?></td>   
+            <td></td>    
+          </tr>
+          <?php $a++; ?>
+          <?php endwhile; ?> 
                 </tbody>
                 </table>
                 </div>
@@ -85,16 +79,7 @@ if (!$_SESSION['userid']) {
           <!-- ตารางแสดงโรคที่เกี่ยวข้อง   -->
               </div> 
 
-          </form>   
-          <form action="apiAD.php" method="POST">
-          <div class="box-footer">
-                  <?php if ($update == true):?>
-                    <button type="submit" class="btn btn-flat btn-info" name="update">แก้ไข</button>
-                  <?php else: ?>
-                    <button type="submit" class="btn bg-navy btn-flat margin aa" name="saveAD">บันทึก</button>
-                  <?php endif; ?>
-                </div>
-          </form>
+        
                                                
   </div>
   </div>

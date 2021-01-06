@@ -1,6 +1,6 @@
 <?php
-$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
-//$mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
+//$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
+$mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
 $topic = '';
 $detail = '';
 $update=false;
@@ -58,4 +58,16 @@ if (isset($_POST['update'])){
     header("location: articlesShow.php");
 
 }
-
+if (isset($_POST['saveAD'])){
+ 
+    $maxdisss = $mysqli->query("SELECT MAX(articles_id)AS MAX from articles where articles_id")or die($mysqli); 
+    foreach($maxdisss as $results)
+        $maxxx= $results['MAX'];
+    
+    foreach ($_SESSION['nameArticles'] as $ad ) {
+        $mysqli->query("INSERT INTO articles_disease (articles_id,disease_id) VALUES ('$maxxx','$ad')")or die($mysqli->error);
+      }
+   
+   unset($_SESSION['nameArticles']);
+   header("location: articlesShow.php");
+   }

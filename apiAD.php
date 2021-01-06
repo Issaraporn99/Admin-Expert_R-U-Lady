@@ -1,23 +1,24 @@
 <?php
-@session_start();
+session_start();
 //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
 $mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
 $update = false;
 $symptom_id = 0;
-if (isset($_POST['saveAD'])){
+$disease_id=0;
+
+if(isset($_POST['saveAD'])){
+    $disease_id = $_POST['disease_id'];
+    $maxdis = $mysqli->query("SELECT MAX(articles_id)as MAX FROM articles where articles_id")or die($mysqli); 
+    foreach( $maxdis as $results)
+    $max= $results['MAX'];
  
-    $maxdisss = $mysqli->query("SELECT MAX(articles_id)AS MAX from articles where articles_id")or die($mysqli); 
-    foreach($maxdisss as $results)
-        $maxxx= $results['MAX'];
-    
-    foreach ($_SESSION['nameArticles'] as $ad ) {
-        $mysqli->query("INSERT INTO articles_disease (articles_id,disease_id) VALUES ('$maxxx','$ad')")or die($mysqli->error);
-      }
-   
-   unset($_SESSION['nameArticles']);
-   header("location: articlesShow.php");
-   }
+    $mysqli->query("INSERT INTO articles_disease (articles_id,disease_id) VALUES ('$max','$disease_id')")or die($mysqli->error);
+
+
+header("location: articlesDis.php");
+}
 // -----------------------------------------------------------------------------------------------------//
+
 ?>
 
 
@@ -57,6 +58,19 @@ if (isset($_POST['update2'])){
 if (isset($_GET['delete2'])){
     $disease_id = $_GET['delete2'];
     $mysqli->query("DELETE FROM disease_symptoms WHERE disease_id=$disease_id")or die($mysqli->error());
+
+    $_SESSION['message'] = "ลบข้อมูลสำเร็จ";
+    $_SESSION['msg_type'] = "danger";
+
+    echo "<script>";
+    echo "alert(\"ลบอาการเรียบร้อย\");";
+    echo "window.history.back()";
+    echo "</script>";
+
+}
+if (isset($_GET['deleteAD'])){
+    $articles_id = $_GET['deleteAD'];
+    $mysqli->query("DELETE FROM articles_disease WHERE articles_id=$articles_id")or die($mysqli->error());
 
     $_SESSION['message'] = "ลบข้อมูลสำเร็จ";
     $_SESSION['msg_type'] = "danger";

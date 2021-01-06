@@ -12,6 +12,7 @@ $disease_defence = '';
 $disease_about = '';
 $update=false;
 $disease_id = 0;
+$symptom_id = 0;
 
 if (isset($_POST['save'])){
     $disease_name = $_POST['disease_name'];
@@ -50,17 +51,18 @@ header("location: addDisSym.php");
 }
 }
 if(isset($_POST['save2'])){
+    $symptom_id = $_POST['symptom_id'];
     $maxdis = $mysqli->query("SELECT MAX(disease_id)as MAX FROM disease where disease_id")or die($mysqli); 
     foreach( $maxdis as $results)
     $max= $results['MAX'];
-    foreach ($_SESSION['name'] as $key ) {
-    $mysqli->query("INSERT INTO disease_symptoms (symptom_id,disease_id) VALUES ('$key','$max')")or die($mysqli->error);
-  }
+ 
+    $mysqli->query("INSERT INTO disease_symptoms (symptom_id,disease_id) VALUES ('$symptom_id','$max')")or die($mysqli->error);
+  
   session_destroy();
   $_SESSION['message'] = "บันทึกข้อมูลสำเร็จ";
 $_SESSION['msg_type'] = "success";
 
-header("location: index4.php");
+header("location: addDisSym.php");
 }
 
 if (isset($_GET['delete'])){

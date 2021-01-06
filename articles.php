@@ -13,27 +13,10 @@ if (!$_SESSION['userid']) {
     <?php require_once 'articlesAPI.php'; ?>
 
     <?php 
-    $mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
-    //$mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
+    //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
+    $mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
     $dis = $mysqli->query("SELECT * FROM disease")or die($mysqli);
  ?>
-  <?php 
-  error_reporting(0);
-  $disArticles=array();
-  $disArticles=$_SESSION['nameArticles'];
-  if(isset($_GET["disease_id"])){
-  $disArticles2=$_GET["disease_id"];
-
-  $_SESSION['nameArticles'][]= $disArticles2;
-  $disArticles=$_SESSION['nameArticles'];
-  }
-  if(isset($_GET["deletedisArticles"])){
-             //session_destroy(); 
-  unset($disArticles[$_GET["deletedisArticles"]]);
-  $_SESSION['disArticles']= $disArticles;             
-  }
-    
-?>
       <div class="box-header with-border">
         <h3 class="box-title">เขียนบทความ</h3>
       </div>
