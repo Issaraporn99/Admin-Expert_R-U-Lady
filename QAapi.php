@@ -20,8 +20,8 @@ if (isset($_POST['save'])){
 }
 
 
-if (isset($_GET['delete'])){
-    $answer_id = $_GET['delete'];
+if (isset($_GET['del'])){
+    $answer_id = $_GET['del'];
     $mysqli->query("DELETE FROM answer WHERE answer_id=$answer_id")or die($mysqli->error());
     $_SESSION['message'] = "ลบข้อมูลสำเร็จ";
     $_SESSION['msg_type'] = "danger";

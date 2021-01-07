@@ -37,14 +37,30 @@ session_start();
                   </div>
                   <div class="line-divider"></div> 
                   <?php $result2 = $mysqli->query("SELECT * FROM `answer` JOIN question 
-                                   on answer.question_id=question.question_id WHERE question.question_id=$question_id")or die($mysqli);?>
+                                   on answer.question_id=question.question_id 
+                                   LEFT JOIN user USING ( id )
+                                   WHERE question.question_id=$question_id")or die($mysqli);?>
+                                 
                   <?php while ($row2 = $result2->fetch_assoc()):?>
-                  <div class="post-comment">
-                    <img src="includes/doctor.png" alt="" class="profile-photo-sm">
-                    <p class="profile-link name"><?php echo $_SESSION['user']; ?></p>
-                    <p class="ml-2"><?php echo $row2['answer_name']; ?></p>
-                  </div> 
+                    
+                        <div class="post-comment">
+                          <img src="includes/doctor.png" alt="" class="profile-photo-sm">
+                          <p class="profile-link name"><?php echo $row2['doctorname']; ?></p>
+                          <p class="ml-2"><?php echo $row2['answer_name']; ?></p>
+                     
+                      <?php if ($row2['id']==$_SESSION['userid']) {?>
+                          <a href="QAapi.php?del=<?php echo $row2['answer_id']; ?>">
+                              <i class="fa fa-fw fa-trash"></i>
+                          </a>
+                       <?php } ?> 
+
+                        </div> 
+
                   <?php endwhile; ?> 
+                  
+
+
+
                   <form action="QAapi.php" method="POST">   
   
                   <div class="post-comment">

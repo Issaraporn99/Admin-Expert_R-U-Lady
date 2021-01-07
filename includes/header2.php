@@ -94,10 +94,12 @@
         </div>
         <div class="pull-left info">
         <p><?php echo $_SESSION['user']; ?></p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        
+          <a href="#"><i class="fa fa-circle text-success"></i>ออนไลน์</a>
         </div>
       </div>
-  
+      <p class="ml-5"><b>สถานที่ทำงาน : </b><?php echo $_SESSION['office']; ?></p>
+      <p class="ml-5"><b>เชี่ยวชาญด้าน : </b><?php echo $_SESSION['expertise_name']; ?></p>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="active treeview">

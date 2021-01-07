@@ -9,7 +9,11 @@ session_start();
         $password = $_POST['password'];
         $passwordenc = md5($password);
 
-        $query = "SELECT * FROM user WHERE username = '$username' AND password = '$passwordenc'";
+        $query = "SELECT *
+        FROM user
+        LEFT JOIN expertise
+        USING ( expertise_id )
+        WHERE user.username  = '$username' AND password = '$passwordenc'";
 
         $result = mysqli_query($conn, $query);
 
@@ -19,6 +23,9 @@ session_start();
 
             $_SESSION['userid'] = $row['id'];
             $_SESSION['user'] = $row['doctorname'];
+            $_SESSION['office'] = $row['office'];
+            $_SESSION['expertise_id'] = $row['expertise_id'];
+            $_SESSION['expertise_name'] = $row['expertise_name'];
             $_SESSION['userlevel'] = $row['userlevel'];
            
 
