@@ -98,6 +98,7 @@ session_start();
 	<script src="csslogin/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="csslogin/js/main.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </body>
 </html>

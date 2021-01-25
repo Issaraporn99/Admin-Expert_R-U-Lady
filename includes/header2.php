@@ -9,6 +9,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
@@ -90,13 +91,12 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="includes/doctor.png" class="img-circle" alt="User Image">
-        </div>
         <div class="pull-left info">
-        <p><?php echo $_SESSION['user']; ?></p>
-        
-          <a href="#"><i class="fa fa-circle text-success"></i>ออนไลน์</a>
+        <p class="ml-5"><b><?php echo $_SESSION['user']; ?></b></p>        
+        <p class="ml-5"><i class="fa fa-circle text-success"></i> ออนไลน์</p>
         </div>
+        </div>
+ 
       </div>
       <p class="ml-5"><b>สถานที่ทำงาน : </b><?php echo $_SESSION['office']; ?></p>
       <p class="ml-5"><b>เชี่ยวชาญด้าน : </b><?php echo $_SESSION['expertise_name']; ?></p>

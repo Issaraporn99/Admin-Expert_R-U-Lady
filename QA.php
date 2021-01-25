@@ -44,16 +44,23 @@ session_start();
                   <?php while ($row2 = $result2->fetch_assoc()):?>
                     
                         <div class="post-comment">
-                          <img src="includes/doctor.png" alt="" class="profile-photo-sm">
+                          <div class="row">
+                            <div class="col-md-1">
+                              <img src="includes/doctor.png" alt="" class="profile-photo-sm">
+                            </div>
+                            <div class="col-md-11">
                           <p class="profile-link name"><?php echo $row2['doctorname']; ?></p>
-                          <p class="ml-2"><?php echo $row2['answer_name']; ?></p>
-                     
-                      <?php if ($row2['id']==$_SESSION['userid']) {?>
+                          <p><?php echo $row2['answer_name']; ?>
+                          <?php if ($row2['id']==$_SESSION['userid']) {?>
                           <a href="QAapi.php?del=<?php echo $row2['answer_id']; ?>">
                               <i class="fa fa-fw fa-trash"></i>
                           </a>
                        <?php } ?> 
-
+                          </p>
+                     
+               
+                       </div>
+                       </div>
                         </div> 
 
                   <?php endwhile; ?> 

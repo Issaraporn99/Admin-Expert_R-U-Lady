@@ -1,5 +1,5 @@
-<?php 
-session_start();
+ <?php
+    session_start();
 
     if (isset($_POST['username'])) {
 
@@ -27,7 +27,7 @@ session_start();
             $_SESSION['expertise_id'] = $row['expertise_id'];
             $_SESSION['expertise_name'] = $row['expertise_name'];
             $_SESSION['userlevel'] = $row['userlevel'];
-           
+
 
             if ($_SESSION['userlevel'] == 'a') {
                 header("Location: index4.php");
@@ -36,15 +36,13 @@ session_start();
             if ($_SESSION['userlevel'] == 'm') {
                 header("Location: user_page.php");
             }
-            } else {
-                echo "<script>";
-                echo "alert(\"User หรือ Password ไม่ถูกต้อง\");";
-                echo "window.history.back()";
-                echo "</script>";
-                
-            }
-
+        } else {
+            echo "<script>";
+            echo "alert(\"User หรือ Password ไม่ถูกต้อง\");";
+            echo "window.history.back()";
+            echo "</script>";
+        }
     } else {
         header("Location: index.php");
-    } 
-?>
+    }
+    ?>

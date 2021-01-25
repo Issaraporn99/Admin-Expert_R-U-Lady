@@ -137,3 +137,8 @@ body {
     float: right;
     margin-bottom: 10px;
  }
+
+.chart-container {
+     width: 50%;
+     height: auto;
+ }
