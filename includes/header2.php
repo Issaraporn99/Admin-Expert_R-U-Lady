@@ -112,9 +112,10 @@
           <ul class="treeview-menu">
             <li><a href="user_page.php"><i class="fa fa-bar-chart"></i>สถิติ</a></li>
             <li><a href="articlesShow.php"><i class="fa fa-file-text"></i>บทความ</a></li>
-            <li><a href="QA.php"><i class="fa fa-question-circle"></i>ถาม-ตอบ</a></li>
+            <li><a href="QA.php"><i class="fa fa-question-circle"></i>ถาม-ตอบ</a></li>           
           </ul>
-        </li>        
+        </li> 
+        <li class="mt-45"><a href="logout.php"><i class="fa fa-sign-out"></i>ออกจากระบบ</a></li>   
     </section>
     <!-- /.sidebar -->
   </aside>
