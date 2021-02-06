@@ -52,7 +52,7 @@
           <tr>
             <th width='3%'>ที่</th>       
             <th width='15%'>อาการ</th>
-            <th width='10%'>ภาพประกอบ</th>
+            <!-- <th width='10%'>ภาพประกอบ</th> -->
             <th width='15%'>กลุ่มอาการ</th>
             <th width='8%'>จัดการข้อมูล</th>
           </tr>
@@ -66,7 +66,7 @@
           <tr>  
             <td><?php echo $i; ?></td>
             <td><?php echo $row['symptom_name']; ?></td>
-            <td></td>
+            <!-- <td></td> -->
             <!-- <td><?php echo "<img src='image/$image_name.jpg' width='auto' height='100'>"; ?></td> -->
             <td><?php echo $row['group_name']; ?></td>
             <td>

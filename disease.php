@@ -52,11 +52,12 @@ header("location: addDisSym.php");
 }
 if(isset($_POST['save2'])){
     $symptom_id = $_POST['symptom_id'];
+    $status = $_POST['r3'];
     $maxdis = $mysqli->query("SELECT MAX(disease_id)as MAX FROM disease where disease_id")or die($mysqli); 
     foreach( $maxdis as $results)
     $max= $results['MAX'];
  
-    $mysqli->query("INSERT INTO disease_symptoms (symptom_id,disease_id) VALUES ('$symptom_id','$max')")or die($mysqli->error);
+    $mysqli->query("INSERT INTO disease_symptoms (symptom_id,disease_id,status) VALUES ('$symptom_id','$max',$status)")or die($mysqli->error);
   
   session_destroy();
   $_SESSION['message'] = "บันทึกข้อมูลสำเร็จ";

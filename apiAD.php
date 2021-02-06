@@ -26,8 +26,9 @@ header("location: articlesDis.php");
 if (isset($_POST['save2'])){
     $symptom_id = $_POST['symptom_id'];
     $disease_id = $_POST['disease_id'];
-    $mysqli->query("INSERT INTO disease_symptoms (symptom_id,disease_id) 
-                    VALUES ('$symptom_id','$disease_id')")or die($mysqli->error);
+    $status = $_POST['r3'];
+    $mysqli->query("INSERT INTO disease_symptoms (symptom_id,disease_id,status) 
+                    VALUES ('$symptom_id','$disease_id',$status)")or die($mysqli->error);
 //    header("location: editSymDis.php");
 echo "<script>";
 echo "window.history.back()";

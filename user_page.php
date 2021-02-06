@@ -13,7 +13,7 @@ if (!$_SESSION['userid']) {
     if (isset($_POST['save2'])) {
         $x = $_POST['x'];
     } else {
-        $x = 3;
+        $x = 10;
     }
     $query = " SELECT COUNT( `disease_id` ) AS cd, disease_name, 
     SUBSTRING( diagnosis_date, 1, 4 ) AS dates
@@ -37,21 +37,28 @@ if (!$_SESSION['userid']) {
     $totol2 = implode(",", $totol2);
     $name2 = implode(",", $name2);
     ?>
-<?php
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <?php
     $con = mysqli_connect('student.crru.ac.th', '601463046', 'issaraporn@5075', '601463046') or die("Error: " . mysqli_error($con));
     mysqli_query($con, "SET NAMES 'utf8' ");
 
     if (isset($_POST['save'])) {
         $disease_id = $_POST['disease_id'];
+        $da = $_POST['dates'];
+        $daa = $_POST['datess'];
     } else {
         $disease_id = 1;
+        $da = 2019;
+        $daa = 2021;
     }
-    $query = " SELECT COUNT( `disease_id` ) AS cd, disease_name, 
-    SUBSTRING( diagnosis_date, 1, 4 ) AS dates
+    $query = "SELECT COUNT( `disease_id` ) AS cd, disease_name, SUBSTRING( diagnosis_date, 1, 4 ) AS dates
     FROM `diagnosis`
     LEFT JOIN `disease`
     USING ( `disease_id` )
-    WHERE `disease_id` = '$disease_id'
+    WHERE `disease_id` ='$disease_id'
+    AND SUBSTRING( diagnosis_date, 1, 4 ) BETWEEN '$da' AND '$daa'
     GROUP BY dates";
     $result = mysqli_query($con, $query);
     $resultchart = mysqli_query($con, $query);
@@ -76,7 +83,7 @@ if (!$_SESSION['userid']) {
         <!-- Main content -->
         <section class="content">
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-14">
                     <div class="box box-danger">
                         <div class="box-header with-border">
                             <h3 class="box-title">สถิติโรค</h3>
@@ -84,7 +91,7 @@ if (!$_SESSION['userid']) {
                         <form action="user_page.php" method="POST">
 
                             <div class="row ml-5 mt-3">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <?php
                                     //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
                                     $mysqli = new mysqli('student.crru.ac.th', '601463046', 'issaraporn@5075', '601463046') or die(mysqli_error($mysqli));
@@ -98,28 +105,56 @@ if (!$_SESSION['userid']) {
                                     </select>
 
                                 </div>
-                                <button type="submit" class="btn bg-navy btn-flat mt-3" name="save">บันทึก</button>
+                            </div>
+
+                            <?php
+                            //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
+                            $mysqli = new mysqli('student.crru.ac.th', '601463046', 'issaraporn@5075', '601463046') or die(mysqli_error($mysqli));
+                            $result = $mysqli->query("SELECT SUBSTRING( diagnosis_date, 1, 4 ) AS dates
+                                    FROM `diagnosis`
+                                    GROUP BY dates") or die($mysqli);
+                            $result2 = $mysqli->query("SELECT SUBSTRING( diagnosis_date, 1, 4 ) AS datess
+                                    FROM `diagnosis`
+                                    GROUP BY datess") or die($mysqli);
+                            ?>
+                            <div class="row ml-5 mt-3">
+                                <div class="col-md-2">
+                                    <label>เลือกปี </label>
+                                    <select name="dates" class="form-control select2">
+                                        <?php foreach ($result as $results) { ?>
+                                            <option value="<?php echo $results['dates']; ?>"><?php echo $results['dates']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                                                                                                    
+                                <div class="col-md-2">
+                                    <label>ถึงปี </label>
+                                    <select name="datess" class="form-control select2">
+                                        <?php foreach ($result2 as $results) { ?>
+                                            <option value="<?php echo $results['datess']; ?>"><?php echo $results['datess']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn bg-navy btn-flat mt-3" name="save"><i class="fa fa-fw fa-search"></i></button>
+                            </div>
+                            
+                            <div class="row ml-5 mt-3">
+                                <div class="box-body col-md-6">
+                                    <canvas id="myChart"></canvas>
+                                </div>
                             </div>
                         </form>
-                        <!-- <div class="box-body">
-                            <div class="chart-container">
-                                <canvas id="graphCanvas"></canvas>
-                            </div>
-                        </div> -->
-                        <div class="box-body">
-                            <div class="chart-container">
-                                <canvas id="myChart" width="400px" height="150px"></canvas>
-                            </div>
-                        </div>
+
 
                     </div>
                 </div>
             </div>
 
-<!--///////////////////////////////////////////////// TOP /////////////////////////////////////////// -->
+
+            <!--///////////////////////////////////////////////// TOP /////////////////////////////////////////// -->
 
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-14">
                     <div class="box box-danger">
                         <div class="box-header with-border">
                             <h3 class="box-title">สถิติโรค</h3>
@@ -127,23 +162,23 @@ if (!$_SESSION['userid']) {
                         <form action="user_page.php" method="POST">
 
                             <div class="row ml-5 mt-3">
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <label>เลือกอันดับโรคสูงสุด</label>
                                     <select name="x" class="form-control select2">
-                                        <?php for($x = 1; $x <= 10; $x++) { ?>
-                                            <option value="<?php echo $x; ?>"><?php echo $x; ?></option>     
+                                        <?php for ($x = 1; $x <= 10; $x++) { ?>
+                                            <option value="<?php echo $x; ?>"><?php echo $x; ?></option>
                                         <?php } ?>
                                     </select>
 
                                 </div>
-                                <button type="submit" class="btn bg-navy btn-flat mt-3" name="save2">บันทึก</button>
+                                <button type="submit" class="btn bg-navy btn-flat mt-3" name="save2"><i class="fa fa-fw fa-search"></i></button>
                             </div>
                         </form>
+
                         <div class="box-body">
-                            <div class="chart-container">
-                                <canvas id="myCharts" width="800px" height="400px"></canvas>
-                            </div>
+                            <canvas id="myCharts" width="800px" height="400px"></canvas>
                         </div>
+
 
                     </div>
                 </div>

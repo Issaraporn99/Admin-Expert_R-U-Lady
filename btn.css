@@ -4,11 +4,18 @@
 .mt-10{
    margin-top: 7.5%;
 }
+.mtttttttt{
+   margin-top: 10%;
+   float: bottom;
+}
 .mt-2{
    margin-top: 2%;
 }
 .mt-3{
    margin-top: 2.5%;
+}
+.mt-35{
+   margin-top: 3%;
 }
 .mt-4{
    margin-top: 4.5%;
@@ -142,6 +149,6 @@ body {
  }
 
 .chart-container {
-     width: 50%;
+     width: 100%;
      height: auto;
  }

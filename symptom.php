@@ -11,6 +11,7 @@ if (isset($_POST['save'])){
     $symptom_name = $_POST['symptom_name'];
     $group_id = $_POST['group_id'];
     $disease_id = $_POST['disease_id'];
+    $status = $_POST['r3'];
 
      	//เช็คซ้ำ
 
@@ -30,9 +31,9 @@ if (isset($_POST['save'])){
             $maxsym = $mysqli->query("SELECT MAX(symptom_id)as MAX FROM symptom where symptom_id")or die($mysqli); 
             foreach( $maxsym as $results)
             $max1= $results['MAX'];
-            foreach ($_SESSION['name'] as $key ) {
-            $mysqli->query("INSERT INTO disease_symptoms (symptom_id,disease_id) VALUES ('$max1','$key')")or die($mysqli->error);
-          }
+        
+            $mysqli->query("INSERT INTO disease_symptoms (symptom_id,disease_id,status) VALUES ('$max1','$disease_id',$status)")or die($mysqli->error);
+          
           session_destroy();  
 
     $getlastid=$mysqli->query("SELECT MAX(symptom_id)AS MAX from symptom where symptom_id")or
