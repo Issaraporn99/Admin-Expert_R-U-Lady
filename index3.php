@@ -85,16 +85,16 @@ include('includes/header.php');
           <!-- select -->
 
           <div class="row">
-            <div class="col-md-4 ml-2 mt-1">
+            <div class="col-md-4 ml-2 mt-2">
               <label>โรค</label>
               <select name="disease_id" class="form-control select2">
                 <?php foreach ($dis as $diss) { ?>
-                  <option value="<?php echo $diss['disease_id'];?>"><?php echo $diss['disease_name']; ?></option>
+                  <option value="<?php echo $diss['disease_id']; ?>"><?php echo $diss['disease_name']; ?></option>
                 <?php } ?>
               </select>
 
             </div>
-            <div class="mt-4">
+            <div class="mt-45">
               <a href="addDis.php">เพิ่มโรคใหม่ <i class="fa fa-fw fa-edit"></i></a>
             </div>
           </div>

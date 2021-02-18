@@ -45,19 +45,6 @@ include('includes/header.php');
 
       <form action="disease.php" method="POST">
         <div class="row">
-          <!-- radio -->
-          <div class="col-md-3 ml-2">
-            <label>
-              อาการหลัก
-              <input type="radio" value=1 name="r3" class="flat-red" checked>
-            </label>
-            <label>
-              อาการอื่น ๆ
-              <input type="radio" value=0 name="r3" class="flat-red">
-            </label>
-          </div>
-        </div>
-        <div class="row">
           <div class="col-md-5 ml-2"><br>
             <label>เลือกอาการ</label>
             <select name="symptom_id" class="form-control select2">

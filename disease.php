@@ -24,6 +24,7 @@ if (isset($_POST['save'])){
     $disease_defence = $_POST['disease_defence'];
     $disease_about = $_POST['disease_about'];
     $expertise_id = $_POST['expertise_id'];
+    $no = $_POST['no'];
 
 //เช็คซ้ำ
 
@@ -39,10 +40,10 @@ if($num > 0)
 }else{
     $mysqli->query("INSERT INTO disease 
             (disease_name,disease_detail,disease_cause,disease_risk,disease_chance,
-             disease_treatment,disease_defence,disease_about,expertise_id) 
+             disease_treatment,disease_defence,disease_about,expertise_id,no) 
              VALUES ('$disease_name','$disease_detail','$disease_cause',
                     '$disease_risk','$disease_chance','$disease_treatment',
-                    '$disease_defence','$disease_about','$expertise_id')")or die($mysqli->error);
+                    '$disease_defence','$disease_about','$expertise_id','$no')")or die($mysqli->error);
 
 $_SESSION['message'] = "บันทึกข้อมูลสำเร็จ";
 $_SESSION['msg_type'] = "success";
@@ -90,6 +91,7 @@ if (isset($_GET['edit'])){
         $disease_defence = $row['disease_defence'];
         $disease_about = $row['disease_about'];
         $expertise_id = $row['expertise_id'];
+        $no = $row['no'];
     
 
 }
@@ -105,6 +107,7 @@ if (isset($_POST['update'])){
     $disease_defence = $_POST['disease_defence'];
     $disease_about = $_POST['disease_about'];
     $expertise_id = $_POST['expertise_id'];
+    $no = $_POST['no'];
     $mysqli->query("UPDATE disease SET disease_name='$disease_name',
                                        disease_detail='$disease_detail',
                                        disease_cause='$disease_cause',
@@ -113,7 +116,8 @@ if (isset($_POST['update'])){
                                        disease_treatment='$disease_treatment',
                                        disease_defence='$disease_defence',
                                        disease_about='$disease_about',
-                                       expertise_id='$expertise_id'
+                                       expertise_id='$expertise_id',
+                                       no='$no'
                     WHERE disease_id=$disease_id")or die($mysqli->error);
         $_SESSION['message'] = "แก้ไขข้อมูลสำเร็จ";
         $_SESSION['msg_type'] = "warning";
