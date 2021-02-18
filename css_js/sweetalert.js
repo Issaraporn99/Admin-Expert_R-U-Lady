@@ -5,7 +5,7 @@
  */
 
 if (typeof window !== 'undefined') {
-    require('../../css/sweetalert.css');
+    require('css_js/sweetalert.css');
 }
 
 require('./polyfills');

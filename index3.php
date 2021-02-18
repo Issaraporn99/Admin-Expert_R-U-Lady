@@ -37,61 +37,17 @@ include('includes/header.php');
       $max = $results['MAX'];
     ?>
 
-    <?php
-    error_reporting(0);
-    $data = array();
-    $data = $_SESSION['name'];
-    if (isset($_GET["disease_id"])) {
-      $data2 = $_GET["disease_id"];
-      // $data3=$_GET["symptom_name"];
-
-      // echo($data3);
-      $_SESSION['name_test'][] = $data3;
-      $_SESSION['name'][] = $data2;
-      $data = $_SESSION['name'];
-    }
-    if (isset($_GET["deleteDis"])) {
-      session_destroy();
-      // unset($data[$_GET["deleteDis"]]);
-      $_SESSION['name'] = $data;
-    }
-    if (isset($_GET['save'])) {
-      foreach ($_SESSION['name'] as $key) {
-        $mysqli->query("INSERT INTO disease_symptoms (symptom_id,disease_id) VALUES ('$key','$max')") or die($mysqli->error);
-      }
-    }
-
-    ?>
-
     <div class="box-header with-border">
       <h3 class="box-title">อาการ</h3>
     </div>
     <!-- Main content -->
     <section class="content">
-      <!-- <form>
-        <div class="row">
-          <div class="col-md-5 ml-2">
-            <label>โรค</label>
-            <select name="disease_id" class="form-control select2">
-              <?php foreach ($dis as $diss) { ?>
-                <option value="<?php echo $diss['disease_id']; ?> <?php echo $diss['disease_name']; ?>"><?php echo $diss['disease_name']; ?></option>
-              <?php } ?>
-            </select>
-          </div>
-          <div class="col-md-5 mt-2">
-            <button type="submit" class="btn bg-maroon btn-flat mt-1">เพิ่ม</button>
-
-          </div>
-        </div>
-
-
-      </form> -->
 
       <form action="symptom.php" method="POST" enctype="multipart/form-data">
         <div class="box-body">
           <div class="row">
             <!-- radio -->
-            <div class="col-md-3 ml-2">
+            <!-- <div class="col-md-3 ml-2">
               <label>
                 อาการหลัก
                 <input type="radio" value=1 name="r3" class="flat-red" checked>
@@ -100,19 +56,26 @@ include('includes/header.php');
                 อาการอื่น ๆ
                 <input type="radio" value=0 name="r3" class="flat-red">
               </label>
-            </div>
+            </div> -->
           </div>
           <div class="row">
             <div class="col-md-6 ml-2"> <br>
               <input type="hidden" name="symptom_id" value="<?php echo $symptom_id; ?>">
-              <label for="exampleInputEmail1">เพิ่มอาการ</label>
-              <input type="text" class="form-control " name="symptom_name" placeholder="อาการ" value="<?php echo $symptom_name; ?>">
+              <label for="exampleInputEmail1">รายการ</label>
+              <input type="text" class="form-control " name="symptom_name" placeholder="รายการ" value="<?php echo $symptom_name; ?>">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 ml-2"> <br>
+              <input type="hidden" name="des_id" value="<?php echo $des_id; ?>">
+              <label for="exampleInputEmail1">ลักษณะ</label>
+              <input type="text" class="form-control " name="des_name" placeholder="ลักษณะ" value="<?php echo $des_name; ?>">
             </div>
           </div>
 
           <!-- select -->
           <div class="col-md-5 ml-1"><br>
-            <label>กลุ่มอาการ</label>
+            <label>อาการ</label>
             <select name="group_id" class="form-control select2">
               <?php foreach ($result as $results) { ?>
                 <option value="<?php echo $results['group_id']; ?>"><?php echo $results['group_name']; ?></option>
@@ -121,16 +84,12 @@ include('includes/header.php');
           </div>
           <!-- select -->
 
-          <!-- รูป -->
-          <p class="ml-1">
-            <!-- <input type="file" name="coverimg" /> -->
-          </p>
           <div class="row">
             <div class="col-md-4 ml-2 mt-1">
               <label>โรค</label>
               <select name="disease_id" class="form-control select2">
                 <?php foreach ($dis as $diss) { ?>
-                  <option value="<?php echo $diss['disease_id']; ?> <?php echo $diss['disease_name']; ?>"><?php echo $diss['disease_name']; ?></option>
+                  <option value="<?php echo $diss['disease_id'];?>"><?php echo $diss['disease_name']; ?></option>
                 <?php } ?>
               </select>
 

@@ -65,12 +65,14 @@ include('includes/header.php');
                 <option value="<?php echo $results['symptom_id']; ?>"><?php echo $results['symptom_name']; ?></option>
               <?php } ?>
             </select>
+            <div class="mt-4">
+              <input type="hidden" name="disease_id" value="<?php echo $disease_id; ?>">
+              <button type="submit" class="btn bg-navy btn-flat" name="save2">บันทึก</button>
 
-
+            </div>
           </div>
-          <div class="col-md-4 mt-45">
-            <input type="hidden" name="disease_id" value="<?php echo $disease_id; ?>">
-            <button type="submit" class="btn bg-navy btn-flat ml-5 " name="save2">บันทึก</button>
+          <div class="col-md-4 mt-4">
+            <a href="index3.php">เพิ่มอาการใหม่ <i class="fa fa-fw fa-edit"></i></a>
           </div>
         </div>
       </form>

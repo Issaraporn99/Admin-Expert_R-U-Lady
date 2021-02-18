@@ -176,7 +176,7 @@ if (!$_SESSION['userid']) {
                         </form>
 
                         <div class="box-body">
-                            <canvas id="myCharts" width="800px" height="400px"></canvas>
+                            <canvas id="myCharts"></canvas>
                         </div>
 
 
