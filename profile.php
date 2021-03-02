@@ -13,7 +13,7 @@ if (!$_SESSION['userid']) {
     <div class="box box-danger">
       <div class="box-body">
         <div class="box-header with-border">
-          <h3 class="tc">ข้อมูลส่วนตัว</h3>
+          <!-- <h3 class="tc">ข้อมูลส่วนตัว</h3> -->
         </div>
       </div>
 
@@ -28,6 +28,9 @@ if (!$_SESSION['userid']) {
       ?>
 
       <div class="row">
+        <div class="col-md-3">
+
+        </div>
         <div class="col-md-5">
           <!-- Profile Image -->
           <div class="box box-danger">

@@ -3,33 +3,31 @@
 include('includes/header.php');
 
 ?>
-<?php require_once 'disease.php'; ?>
+<?php require_once 'symptom.php'; ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <div class="box box-primary">
-    <!-- <?php
-          if (isset($_SESSION['message'])) : ?>
-  <div class="alert alert-<?= $_SESSION['msg_type'] ?>">
-      <?php echo $_SESSION['message'];
-            unset($_SESSION['message']);
-      ?>
-  </div>
-  <?php endif ?> -->
+
     <div class="box-header with-border">
       <?php
       //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
       $mysqli = new mysqli('student.crru.ac.th', '601463046', 'issaraporn@5075', '601463046') or die(mysqli_error($mysqli));
-      $maxdis = $mysqli->query("SELECT MAX(disease_id)as MAX , `disease_name` FROM disease where disease_id") or die($mysqli);
+      $maxdis = $mysqli->query("SELECT MAX(symptom_id)as MAX , `symptom_name` FROM symptom where symptom_id") or die($mysqli);
       foreach ($maxdis as $results)
         $max = $results['MAX'];
-      $m = $mysqli->query("SELECT MAX(disease_id)as MAX , `disease_name` FROM disease where disease_id=$max") or die($mysqli);
+      $m = $mysqli->query("SELECT MAX(symptom_id)as MAX , `symptom_name` FROM symptom where symptom_id=$max") or die($mysqli);
       foreach ($m as $resultss)
-        $nameD = $resultss['disease_name'];
+        $nameD = $resultss['symptom_name'];
 
       ?>
-      <h3 class="box-title">อาการของโรค<?php echo $nameD ?> </h3>
+     <a href="indexSymShow.php">กลับไปหน้าแสดงอาการ</a>
+      <br>
+      <br>   
+      <h3 class="box-title">โรคที่เกี่ยวข้องกับอาการ <?php echo $nameD ?> </h3>
+      
+      
     </div>
     <!-- Main content -->
     <section class="box-body">
@@ -40,35 +38,35 @@ include('includes/header.php');
       $re2 = 1;
       // $mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
       $mysqli = new mysqli('student.crru.ac.th', '601463046', 'issaraporn@5075', '601463046') or die(mysqli_error($mysqli));
-      $result = $mysqli->query("SELECT * FROM symptom  order by CONVERT( symptom_name USING tis620 ) ASC") or die($mysqli);  
-      $dissymtable = $mysqli->query("SELECT * FROM `disease_symptoms` INNER JOIN `symptom` USING(`symptom_id`) WHERE `disease_id`=$max") or die($mysqli);
+      $result = $mysqli->query("SELECT * FROM disease  order by CONVERT( disease_name USING tis620 ) ASC") or die($mysqli);
+      $dissymtable = $mysqli->query("SELECT * FROM `disease_symptoms` INNER JOIN `disease` USING(`disease_id`) WHERE `symptom_id`=$max") or die($mysqli);
 
       ?>
 
-      <form action="disease.php" method="POST">
+      <form action="symptom.php" method="POST">
         <div class="row">
-          <div class="col-md-5 ml-2"><br>        
-            <div class="mt-2">
-              <label>เลือกอาการ</label>
-              <select name="symptom_id" class="form-control select2">
-                <?php foreach ($result as $results) { ?>
-                  <option value="<?php echo $results['symptom_id']; ?>"><?php echo $results['symptom_name']; ?></option>
-     
+          <div class="row">
+            <div class="col-md-4 ml-2 mt-2">
+              <label>เลือกโรค</label>
+              <select name="disease_id" class="form-control select2">
+                <?php foreach ($result as $diss) { ?>
+                  <option value="<?php echo $diss['disease_id']; ?>"><?php echo $diss['disease_name']; ?></option>
                 <?php } ?>
               </select>
+              <div class="mt-2">
+                <a href="addDis.php">เพิ่มโรคใหม่ <i class="fa fa-fw fa-edit"></i></a>
+              </div>
             </div>
 
-
-
-            <div class="mt-4">
-              <input type="hidden" name="disease_id" value="<?php echo $disease_id; ?>">
-              <button type="submit" class="btn bg-navy btn-flat" name="save2">บันทึก</button>
-
+            <div class="mt-45">
+              <input type="hidden" name="symptom_id" value="<?php echo $symptom_id; ?>">
+              <button type="submit" class="btn bg-olive btn-flat" name="save3"><i class="fa fa-save ml-1"></i> บันทึก</button>
             </div>
+
           </div>
-          <div class="col-md-4 mt-4">
+          <!-- <div class="col-md-4 mt-4">
             <a href="index3.php">เพิ่มอาการใหม่ <i class="fa fa-fw fa-edit"></i></a>
-          </div>
+          </div> -->
         </div>
       </form>
 
@@ -82,15 +80,15 @@ include('includes/header.php');
       <div class="box-body">
         <div class="box">
           <div class="tc">
-            <h4>ตารางแสดงอาการ</h4>
+            <h4>ตารางแสดงโรค</h4>
           </div>
           <table id="example1" class="table table-bordered table-striped">
             <thead>
               <tr>
                 <th width='3%'>ที่</th>
-                <th width='40%'>อาการ</th>
+                <th width='40%'>โรค</th>
                 <th width='3%'>ลบ</th>
-                 </tr>
+              </tr>
             </thead>
             <tbody>
               <?php
@@ -98,9 +96,9 @@ include('includes/header.php');
               while ($row = $dissymtable->fetch_assoc()) : ?>
                 <tr>
                   <td><?php echo $a; ?></td>
-                  <td><?php echo $row['symptom_name']; ?></td>
-                  <td><a href="apiAD.php?delete2=<?php echo $row['symptom_id']; ?>" class="btn btn-danger btn-flat fl">
-                        <span class="glyphicon glyphicon-trash"></span></a></td>
+                  <td><?php echo $row['disease_name']; ?></td>
+                  <td><a href="apiAD.php?delete22=<?php echo $row['disease_id']; ?>" class="btn btn-danger btn-flat fl">
+                      <span class="glyphicon glyphicon-trash"></span></a></td>
                 </tr>
                 <?php $a++; ?>
               <?php endwhile; ?>

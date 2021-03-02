@@ -70,18 +70,18 @@
 </head>
 <body>
     <div class="limiter">
-		<div class="container-login100" style="background-image: url('csslogin/images/bg-01.jpg');">
+		<div class="container-login100" style="background-image: url('csslogin/images/young-handsome-physician-medical-robe-with-stethoscope.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"class="login100-form validate-form">
                 <span class="login100-form-title p-b-49">สมัครสมาชิก</span>
                  <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
                     <span class="label-input100">ชื่อผู้ใช้</span>
-                    <input  class="input100" type="text" name="username" placeholder="ชื่อผู้ใช้" required>
+                    <input  class="input100" type="text" name="username" placeholder="Username" required>
                     <span class="focus-input100" data-symbol="&#xf206;"></span>
                 </div>
                  <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
                  <span class="label-input100">รหัสผ่าน</span>
-                    <input  class="input100" type="password" name="password" placeholder="รหัสผ่าน" required>
+                    <input  class="input100" type="password" name="password" placeholder="Password" required>
                     <span class="focus-input100" data-symbol="&#xf206;"></span>
                 </div>
                  <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">

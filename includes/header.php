@@ -117,11 +117,13 @@
           <ul class="treeview-menu">
             <li><a href="index1.php"><i class="fa fa-female"></i>อวัยวะ</a></li>
             <li><a href="index2.php"><i class="fa fa-plus-square"></i>กลุ่มอาการ</a></li>
-            <li><a href="index4.php"><i class="fa fa-stethoscope"></i>โรค</a></li>
             <li><a href="indexSymShow.php"><i class="fa fa-heartbeat"></i>อาการ</a></li>
+            <li><a href="indexSymDis.php"><i class="fa fa-medkit"></i>อาการโรค</a></li> 
+            <li><a href="index4.php"><i class="fa fa-stethoscope"></i>โรค</a></li>         
             <li><a href="index5.php"><i class="fa fa-user-md"></i>สาขาความเชี่ยวชาญ</a></li>
           </ul>
-        </li>        
+        </li> 
+        <li class="mt-45"><a href="logout.php"><i class="fa fa-sign-out"></i>ออกจากระบบ</a></li>        
     </section>
     <!-- /.sidebar -->
   </aside>

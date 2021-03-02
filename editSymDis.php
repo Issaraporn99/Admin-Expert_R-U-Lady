@@ -41,19 +41,7 @@ include('includes/header.php');
                 <label>โรค</label> <?php echo $disease_name ?>
               </div>
             </div>
-            <div class="row mt-3">
-              <!-- radio -->
-              <div class="col-md-3 ml-2">
-                <label>
-                  อาการหลัก
-                  <input type="radio" value=1 name="r3" class="flat-red" checked>
-                </label>
-                <label>
-                  อาการอื่น ๆ
-                  <input type="radio" value=0 name="r3" class="flat-red">
-                </label>
-              </div>
-            </div>
+
             <div class="row">
 
               <div class="col-md-5 ml-2"><br>
@@ -83,7 +71,7 @@ include('includes/header.php');
                 <tr>
                   <th width='5%'>ที่</th>
                   <th width='60%'>อาการ</th>
-                  <th width='3%'><a href="apiAD.php?delete2=<?php echo $row['disease_id']; ?>" class="btn btn-danger btn-flat fl">ลบอาการทั้งหมด</a></th>
+                  <th width='3%'>ลบ</th>
                 </tr>
               </thead>
               <tbody>
@@ -92,7 +80,8 @@ include('includes/header.php');
                   <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $row['symptom_name']; ?></td>
-                    <td></td>
+                    <td><a href="apiAD.php?delete2=<?php echo $row['symptom_id']; ?>" class="btn btn-danger btn-flat fl">
+                        <span class="glyphicon glyphicon-trash"></span></a></td>
                   </tr>
                   <?php $i++; ?>
                 <?php endwhile; ?>

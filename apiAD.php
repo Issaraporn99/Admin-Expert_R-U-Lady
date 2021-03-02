@@ -1,3 +1,14 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="css_js/sweetalert.min.js"></script>
+    <script src="css_js/sweetalert.js"></script>
+    <link rel="stylesheet" type="text/css" href="css_js/sweetalert.css">
+</head>
+
+<body>
+
 <?php
 session_start();
 //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
@@ -15,7 +26,9 @@ if(isset($_POST['saveAD'])){
     $mysqli->query("INSERT INTO articles_disease (articles_id,disease_id) VALUES ('$max','$disease_id')")or die($mysqli->error);
 
 
-header("location: articlesDis.php");
+    echo "<script>";
+    echo "window.history.back()";
+    echo "</script>";
 }
 // -----------------------------------------------------------------------------------------------------//
 
@@ -26,9 +39,8 @@ header("location: articlesDis.php");
 if (isset($_POST['save2'])){
     $symptom_id = $_POST['symptom_id'];
     $disease_id = $_POST['disease_id'];
-    $status = $_POST['r3'];
-    $mysqli->query("INSERT INTO disease_symptoms (symptom_id,disease_id,status) 
-                    VALUES ('$symptom_id','$disease_id',$status)")or die($mysqli->error);
+    $mysqli->query("INSERT INTO disease_symptoms (symptom_id,disease_id) 
+                    VALUES ('$symptom_id','$disease_id')")or die($mysqli->error);
 //    header("location: editSymDis.php");
 echo "<script>";
 echo "window.history.back()";
@@ -57,29 +69,45 @@ if (isset($_POST['update2'])){
     header('location: editSymDis.php');
 }
 if (isset($_GET['delete2'])){
-    $disease_id = $_GET['delete2'];
-    $mysqli->query("DELETE FROM disease_symptoms WHERE disease_id=$disease_id")or die($mysqli->error());
+        $symptom_id = $_GET['delete2'];
+        $de = $mysqli->query("SELECT * FROM `disease_symptoms` WHERE `symptom_id` = $symptom_id") or die($mysqli->error());
+        foreach ($de as $results)
+            $del = $results['disease_id'];
 
-    $_SESSION['message'] = "ลบข้อมูลสำเร็จ";
-    $_SESSION['msg_type'] = "danger";
+        $mysqli->query("DELETE FROM disease_symptoms WHERE symptom_id = $symptom_id and disease_id = $del") or die($mysqli->error());
+        echo "<script>";
+        echo "window.history.back()";
+        echo "</script>";
+    }
 
-    echo "<script>";
-    echo "alert(\"ลบอาการเรียบร้อย\");";
-    echo "window.history.back()";
-    echo "</script>";
+    if (isset($_GET['delete22'])){
+        $disease_id = $_GET['delete22'];
+        $de = $mysqli->query("SELECT * FROM `disease_symptoms` WHERE `disease_id` = $disease_id") or die($mysqli->error());
+        foreach ($de as $results)
+            $del = $results['symptom_id'];
 
-}
+        $mysqli->query("DELETE FROM disease_symptoms WHERE symptom_id = $del and disease_id = $disease_id") or die($mysqli->error());
+        echo "<script>";
+        echo "window.history.back()";
+        echo "</script>";
+    }
+
 if (isset($_GET['deleteAD'])){
-    $articles_id = $_GET['deleteAD'];
-    $mysqli->query("DELETE FROM articles_disease WHERE articles_id=$articles_id")or die($mysqli->error());
+    $disease_id = $_GET['deleteAD'];
+    $de = $mysqli->query("SELECT * FROM `articles_disease` WHERE `disease_id` = $disease_id") or die($mysqli->error());
+        foreach ($de as $results)
+            $deldis = $results['articles_id'];
+    $mysqli->query("DELETE FROM articles_disease WHERE articles_id=$deldis and disease_id=$disease_id")or die($mysqli->error());
 
     $_SESSION['message'] = "ลบข้อมูลสำเร็จ";
     $_SESSION['msg_type'] = "danger";
 
     echo "<script>";
-    echo "alert(\"ลบอาการเรียบร้อย\");";
     echo "window.history.back()";
     echo "</script>";
 
 }
 ?>
+</body>
+
+</html>

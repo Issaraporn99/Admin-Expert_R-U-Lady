@@ -26,7 +26,7 @@ if (!$_SESSION['userid']) {
       $dissymtable = $mysqli->query("SELECT * FROM `articles_disease` INNER JOIN `disease` USING(`disease_id`) WHERE `articles_id`=$maxxx")or die($mysqli);
 ?>
       <div class="box-header with-border">
-      <a href="articlesShow.php" class="btn btn-default btn-flat"><i class="fa fa-fw fa-step-backward"></i></a>
+      <a href="articlesShow.php"><i class="fa fa-fw fa-chevron-left"></i></a>
         <h3 class="box-title">บทความนี้เกี่ยวข้องกับโรคอะไรบ้าง</h3>
       </div>
       <form action="apiAD.php" method="POST">

@@ -82,107 +82,104 @@ if (!$_SESSION['userid']) {
     <div class="content-wrapper">
         <!-- Main content -->
         <section class="content">
-            <div class="row">
-                <div class="col-md-14">
-                    <div class="box box-danger">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">สถิติโรค</h3>
-                        </div>
-                        <form action="user_page.php" method="POST">
+            <div class="box box-danger">
+                <div class="box-body">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">สถิติโรค</h3>
+                    </div>
+                    <form action="user_page.php" method="POST">
 
-                            <div class="row ml-5 mt-3">
-                                <div class="col-md-4">
-                                    <?php
-                                    //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
-                                    $mysqli = new mysqli('student.crru.ac.th', '601463046', 'issaraporn@5075', '601463046') or die(mysqli_error($mysqli));
-                                    $result = $mysqli->query("SELECT * FROM `disease`") or die($mysqli);
-                                    ?>
-                                    <label>เลือกโรค</label>
-                                    <select name="disease_id" class="form-control select2">
-                                        <?php foreach ($result as $results) { ?>
-                                            <option value="<?php echo $results['disease_id']; ?>"><?php echo $results['disease_name']; ?></option>
-                                        <?php } ?>
-                                    </select>
+                        <div class="row ml-5 mt-3">
+                            <div class="col-md-4">
+                                <?php
+                                //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
+                                $mysqli = new mysqli('student.crru.ac.th', '601463046', 'issaraporn@5075', '601463046') or die(mysqli_error($mysqli));
+                                $result = $mysqli->query("SELECT * FROM `disease`") or die($mysqli);
+                                ?>
+                                <label>เลือกโรค</label>
+                                <select name="disease_id" class="form-control select2">
+                                    <?php foreach ($result as $results) { ?>
+                                        <option value="<?php echo $results['disease_id']; ?>"><?php echo $results['disease_name']; ?></option>
+                                    <?php } ?>
+                                </select>
 
-                                </div>
                             </div>
+                        </div>
 
-                            <?php
-                            //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
-                            $mysqli = new mysqli('student.crru.ac.th', '601463046', 'issaraporn@5075', '601463046') or die(mysqli_error($mysqli));
-                            $result = $mysqli->query("SELECT SUBSTRING( diagnosis_date, 1, 4 ) AS dates
+                        <?php
+                        //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
+                        $mysqli = new mysqli('student.crru.ac.th', '601463046', 'issaraporn@5075', '601463046') or die(mysqli_error($mysqli));
+                        $result = $mysqli->query("SELECT SUBSTRING( diagnosis_date, 1, 4 ) AS dates
                                     FROM `diagnosis`
                                     GROUP BY dates") or die($mysqli);
-                            $result2 = $mysqli->query("SELECT SUBSTRING( diagnosis_date, 1, 4 ) AS datess
+                        $result2 = $mysqli->query("SELECT SUBSTRING( diagnosis_date, 1, 4 ) AS datess
                                     FROM `diagnosis`
                                     GROUP BY datess") or die($mysqli);
-                            ?>
-                            <div class="row ml-5 mt-3">
-                                <div class="col-md-2">
-                                    <label>เลือกปี </label>
-                                    <select name="dates" class="form-control select2">
-                                        <?php foreach ($result as $results) { ?>
-                                            <option value="<?php echo $results['dates']; ?>"><?php echo $results['dates']; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                                                                                                    
-                                <div class="col-md-2">
-                                    <label>ถึงปี </label>
-                                    <select name="datess" class="form-control select2">
-                                        <?php foreach ($result2 as $results) { ?>
-                                            <option value="<?php echo $results['datess']; ?>"><?php echo $results['datess']; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn bg-navy btn-flat mt-3" name="save"><i class="fa fa-fw fa-search"></i></button>
+                        ?>
+                        <div class="row ml-5 mt-3">
+                            <div class="col-md-2">
+                                <label>เลือกปี </label>
+                                <select name="dates" class="form-control select2">
+                                    <?php foreach ($result as $results) { ?>
+                                        <option value="<?php echo $results['dates']; ?>"><?php echo $results['dates']; ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
-                            
-                            <div class="row ml-5 mt-3">
-                                <div class="box-body col-md-6">
-                                    <canvas id="myChart"></canvas>
-                                </div>
+
+                            <div class="col-md-2">
+                                <label>ถึงปี </label>
+                                <select name="datess" class="form-control select2">
+                                    <?php foreach ($result2 as $results) { ?>
+                                        <option value="<?php echo $results['datess']; ?>"><?php echo $results['datess']; ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
-                        </form>
+                            <button type="submit" class="btn bg-navy btn-flat mt-3" name="save"><i class="fa fa-fw fa-search"></i></button>
+                        </div>
 
+                        <div class="row ml-5 mt-3">
+                            <div class="box-body col-md-6">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                    </form>
 
-                    </div>
                 </div>
             </div>
+
 
 
             <!--///////////////////////////////////////////////// TOP /////////////////////////////////////////// -->
 
-            <div class="row">
-                <div class="col-md-14">
-                    <div class="box box-danger">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">สถิติโรค</h3>
+
+            <div class="box box-danger">
+            <div class="box-body">
+                <div class="box-header with-border">
+                    <h3 class="box-title">สถิติโรค</h3>
+                </div>
+                <form action="user_page.php" method="POST">
+
+                    <div class="row ml-5 mt-3">
+                        <div class="col-md-2">
+                            <label>เลือกอันดับโรคสูงสุด</label>
+                            <select name="x" class="form-control select2">
+                                <?php for ($x = 1; $x <= 10; $x++) { ?>
+                                    <option value="<?php echo $x; ?>"><?php echo $x; ?></option>
+                                <?php } ?>
+                            </select>
+
                         </div>
-                        <form action="user_page.php" method="POST">
-
-                            <div class="row ml-5 mt-3">
-                                <div class="col-md-2">
-                                    <label>เลือกอันดับโรคสูงสุด</label>
-                                    <select name="x" class="form-control select2">
-                                        <?php for ($x = 1; $x <= 10; $x++) { ?>
-                                            <option value="<?php echo $x; ?>"><?php echo $x; ?></option>
-                                        <?php } ?>
-                                    </select>
-
-                                </div>
-                                <button type="submit" class="btn bg-navy btn-flat mt-3" name="save2"><i class="fa fa-fw fa-search"></i></button>
-                            </div>
-                        </form>
-
-                        <div class="box-body">
-                            <canvas id="myCharts"></canvas>
-                        </div>
-
-
+                        <button type="submit" class="btn bg-navy btn-flat mt-3" name="save2"><i class="fa fa-fw fa-search"></i></button>
                     </div>
+                </form>
+
+                <div class="box-body">
+                    <canvas id="myCharts"></canvas>
+                </div>
+
                 </div>
             </div>
+
         </section>
         <!-- /.content -->
     </div>

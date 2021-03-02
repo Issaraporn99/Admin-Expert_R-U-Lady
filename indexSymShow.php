@@ -39,8 +39,7 @@
     $dissymtable = $mysqli->query("SELECT * FROM `disease_symptoms` INNER JOIN disease USING(disease_id) INNER JOIN symptom USING(symptom_id)")or die($mysqli);
    
     $table = $mysqli->query("SELECT * FROM symptom 
-                              JOIN group_symptom using(group_id)
-                              join description using(`symptom_id`)")or die($mysqli);
+                              JOIN group_symptom using(group_id) order by group_id")or die($mysqli);
     $i=1;
     $a=1;
  ?>
@@ -53,10 +52,9 @@
           <thead>
           <tr>
             <th width='3%'>ที่</th>       
-            <th width='15%'>รายการ</th>
-            <!-- <th width='10%'>ภาพประกอบ</th> -->
             <th width='15%'>อาการ</th>
-            <th width='15%'>ลักษณะ</th>
+            <th width='15%'>กลุ่มอาการ</th>
+            <th width='15%'>รูป</th>
             <th width='8%'>จัดการข้อมูล</th>
           </tr>
           </thead>     
@@ -70,11 +68,11 @@
             <td><?php echo $i; ?></td>
             <td><?php echo $row['symptom_name']; ?></td>                  
             <td><?php echo $row['group_name']; ?></td>
-            <td><?php echo $row['des_name']; ?></td>
+            <td><img src = "<?php echo $row['img']; ?>"style="width: 30%;"></td>
             <td>
                 <a href="editSym.php?edit=<?php echo $row['symptom_id']; ?>"
                   class="btn bg-orange btn-flat"><i class="fa fa-fw fa-edit"></i></a>
-                <a href="symptom.php?delete=<?php echo $row['des_id']; ?>"
+                <a href="symptom.php?delete=<?php echo $row['symptom_id']; ?>"
                   class="btn btn-danger btn-flat"><span class="glyphicon glyphicon-trash"></span></a>
             </td>
           </tr>
