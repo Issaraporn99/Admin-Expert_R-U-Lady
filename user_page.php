@@ -13,7 +13,7 @@ if (!$_SESSION['userid']) {
     if (isset($_POST['save2'])) {
         $x = $_POST['x'];
     } else {
-        $x = 10;
+        $x = 5;
     }
     $query = " SELECT COUNT( `disease_id` ) AS cd, disease_name, 
     SUBSTRING( diagnosis_date, 1, 4 ) AS dates
@@ -153,29 +153,33 @@ if (!$_SESSION['userid']) {
 
 
             <div class="box box-danger">
-            <div class="box-body">
-                <div class="box-header with-border">
-                    <h3 class="box-title">สถิติโรค</h3>
-                </div>
-                <form action="user_page.php" method="POST">
-
-                    <div class="row ml-5 mt-3">
-                        <div class="col-md-2">
-                            <label>เลือกอันดับโรคสูงสุด</label>
-                            <select name="x" class="form-control select2">
-                                <?php for ($x = 1; $x <= 10; $x++) { ?>
-                                    <option value="<?php echo $x; ?>"><?php echo $x; ?></option>
-                                <?php } ?>
-                            </select>
-
-                        </div>
-                        <button type="submit" class="btn bg-navy btn-flat mt-3" name="save2"><i class="fa fa-fw fa-search"></i></button>
-                    </div>
-                </form>
-
                 <div class="box-body">
-                    <canvas id="myCharts"></canvas>
-                </div>
+                    <div class="box-header with-border">
+                        <h3 class="box-title">สถิติโรค</h3>
+                    </div>
+                    <form action="user_page.php" method="POST">
+
+                        <div class="row ml-5 mt-3">
+                            <div class="col-md-2">
+                                <label>เลือกอันดับโรคสูงสุด</label>
+                                <select name="x" class="form-control select2">
+                                    <?php for ($x = 1; $x <= 10; $x++) { ?>
+                                        <option value="<?php echo $x; ?>"><?php echo $x; ?></option>
+                                    <?php } ?>
+                                </select>
+
+                            </div>
+                            <button type="submit" class="btn bg-navy btn-flat mt-3" name="save2"><i class="fa fa-fw fa-search"></i></button>
+                        </div>
+
+                        <div class="row ml-5 mt-3">
+                            <div class="box-body col-md-10">
+                                <canvas id="myCharts"></canvas>
+                            </div>
+                        </div>
+                    </form>
+
+
 
                 </div>
             </div>

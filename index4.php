@@ -15,7 +15,7 @@
           <form role="form">
               <div class="box-body">
                 <div class="col-md-6">
-                  <a href="addDis.php" class="btn bg-maroon btn-flat margin">เพิ่มโรค</a>          
+                  <a href="addDis.php" class="btn bg-maroon btn-flat margin"><i class="fa fa-plus"></i> เพิ่มโรค</a>          
                 </div> 
               </div>
             </form>   

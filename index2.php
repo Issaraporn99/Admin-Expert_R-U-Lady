@@ -48,7 +48,7 @@
                   <?php if ($update == true):?>
                     <button type="submit" class="btn bg-orange btn-flat margin" name="update">แก้ไข</button>
                   <?php else: ?>
-                    <button type="submit" class="btn bg-navy btn-flat margin" name="save">บันทึก</button>
+                    <button type="submit" class="btn bg-navy btn-flat margin" name="save"><i class="fa fa-save ml-1"></i> บันทึก</button>
                   <?php endif; ?>
                 </div>
             </form>       

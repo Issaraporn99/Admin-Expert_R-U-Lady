@@ -90,7 +90,7 @@ include('includes/header.php');
                               <?php if ($update == true) : ?>
                                     <button type="submit" class="btn bg-orange btn-flat " name="update">แก้ไข</button>
                               <?php else : ?>
-                                    <button type="submit" class="btn bg-navy btn-flat aa" name="save">บันทึก</button>
+                                    <button type="submit" class="btn bg-navy btn-flat aa" name="save"><i class="fa fa-save ml-1"></i> บันทึก</button>
                               <?php endif; ?>
 
                         </div>

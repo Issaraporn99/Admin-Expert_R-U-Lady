@@ -16,7 +16,7 @@ if (!$_SESSION['userid']) {
                   <h3 class="tc">บทความ</h3>
               </div>
                 <div class="col-md-6">
-                  <a href="articles.php" class="btn bg-olive">เขียนบทความ</a>          
+                  <a href="articles.php" class="btn bg-olive"><i class="fa fa-pencil ml-1"></i> เขียนบทความ</a>          
                 </div> 
               </div>
             </form>   
@@ -47,7 +47,7 @@ if (!$_SESSION['userid']) {
         <td><?php echo $row['issue_date']; ?></td>
         <td><?php echo $row['topic']; ?></td> 
         <td>
-        <button type="button" class="btn bg-purple " data-toggle="modal" data-target="#exampleModal<?php echo $row['articles_id']; ?>">
+        <button type="button" class="btn btn-info " data-toggle="modal" data-target="#exampleModal<?php echo $row['articles_id']; ?>">
         <span class="glyphicon glyphicon-file"></span></button>
 
         <div class="modal fade" id="exampleModal<?php echo $row['articles_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel<?php echo $row['articles_id']; ?>" aria-hidden="true">
@@ -96,7 +96,7 @@ if (!$_SESSION['userid']) {
   </div>
   </div>
   <!-- /.content-wrapper -->
-  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <!-- <script src='https://kit.fontawesome.com/a076d05399.js'></script> -->
   <?php include('includes/scripts.php'); 
  include('includes/footer.php'); 
  

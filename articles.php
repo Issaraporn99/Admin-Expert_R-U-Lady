@@ -44,9 +44,9 @@ if (!$_SESSION['userid']) {
             <input type="hidden" name="id" value="<?php echo $_SESSION['userid'] ?>">
             <input type="hidden" name="issue_date" value="<?php echo $issue_date; ?>">
             <?php if ($update == true) : ?>
-              <button type="submit" class="btn btn-flat btn-info aa" name="update">แก้ไข</button>
+              <button type="submit" class="btn btn-info aa" name="update">แก้ไข</button>
             <?php else : ?>
-              <button type="submit" class="btn bg-navy btn-flat margin aa" name="saves">บันทึก</button>
+              <button type="submit" class="btn bg-navy margin aa" name="saves"><i class="fa fa-save ml-1"></i> บันทึก</button>
             <?php endif; ?>
           </div>
         </div>

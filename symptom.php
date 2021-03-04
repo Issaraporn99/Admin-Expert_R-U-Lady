@@ -92,26 +92,7 @@
 
         $mysqli->query("DELETE FROM symptom WHERE symptom_id = $symptom_id") or die($mysqli->error());
         $mysqli->query("DELETE FROM disease_symptoms WHERE symptom_id = $symptom_id and disease_id = $del") or die($mysqli->error());
-
-        if ($mysqli) {
-    ?>
-            <script type='text/javascript'>
-                swal("สำเร็จ!", "ลบข้อมูลสำเร็จ", "success").then(function() {
-                    window.location = 'indexSymShow.php';
-                });
-            </script>
-        <?php
-
-        } else {
-        ?>
-            <script type='text/javascript'>
-                swal("แจ้งเตือน!", "เกิดข้อผิดพลาด!", "error").then(function() {
-                    window.location = 'index3.php';
-                });
-            </script>
-        <?php
-
-        }
+        header("location: indexSymShow.php");
     }
 
     if (isset($_GET['edit'])) {
@@ -132,8 +113,27 @@
     if (isset($_POST['update'])) {
         $symptom_idd = $_POST['symptom_id'];
         $symptom_name = $_POST['symptom_name'];
+             //ตัวแปรหน้ารูป
+             $name_img = "img";
 
-        $mysqli->query("UPDATE symptom SET symptom_name='$symptom_name' WHERE symptom_id=$symptom_idd") or
+
+             $img = (isset($_POST['img']) ? $_POST['img'] : '');
+             $upload = $_FILES['img']['name'];
+     
+             if ($upload != '') {
+                 //โฟเดอร์เก็บไฟล์
+                 $path = "diseaseIMG";
+                 //ตัวแปรในการตัดชื่อภาพ
+                 $type = strrchr($_FILES['img']['name'], ".");
+                 //ตั้งชื่อไฟล์ใหม่
+                 $newname = $name_img . $symptom_idd . $type;
+                 $path_copy = $path . $newname;
+                 $path_link = "http://student.crru.ac.th/601463046/diseaseIMG" . $newname;
+                 //คัดลอกไฟล์ไปยังโฟเดอ
+                 move_uploaded_file($_FILES['img']['tmp_name'], $path_copy);
+             }
+
+        $mysqli->query("UPDATE symptom SET symptom_name='$symptom_name',img='$path_link' WHERE symptom_id=$symptom_idd") or
             die($mysqli->error);
         if ($mysqli) {
         ?>

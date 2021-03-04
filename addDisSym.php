@@ -62,7 +62,7 @@ include('includes/header.php');
 
             <div class="mt-4">
               <input type="hidden" name="disease_id" value="<?php echo $disease_id; ?>">
-              <button type="submit" class="btn bg-navy btn-flat" name="save2">บันทึก</button>
+              <button type="submit" class="btn bg-navy btn-flat" name="save2"><i class="fa fa-save ml-1"></i> บันทึก</button>
 
             </div>
           </div>

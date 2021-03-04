@@ -37,7 +37,7 @@
                       <?php if ($update == true):?>
                         <button type="submit" class="btn bg-orange btn-flat ml-5 mt-10" name="update">แก้ไข</button>
                       <?php else: ?>
-                        <button type="submit" class="btn bg-navy btn-flat ml-5 mt-10" name="save">บันทึก</button>
+                        <button type="submit" class="btn bg-navy btn-flat ml-5 mt-10" name="save"><i class="fa fa-save ml-1"></i> บันทึก</button>
                       <?php endif; ?>
                   </div>
               </div>

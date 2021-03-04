@@ -26,11 +26,12 @@ if (!$_SESSION['userid']) {
       $dissymtable = $mysqli->query("SELECT * FROM `articles_disease` INNER JOIN `disease` USING(`disease_id`) WHERE `articles_id`=$maxxx")or die($mysqli);
 ?>
       <div class="box-header with-border">
-      <a href="articlesShow.php" class="btn btn-default btn-flat"><i class="fa fa-fw fa-step-backward"></i></a>
-        <h3 class="box-title">บทความนี้เกี่ยวข้องกับโรคอะไรบ้าง</h3>
+      <a href="articlesShow.php">กลับไปหน้าบทความ</a>
+       
       </div>
       <form action="apiAD.php" method="POST">
       <div class="box-body"> 
+      <h4 class="box-title">บทความนี้เกี่ยวข้องกับโรคอะไรบ้าง</h4>
                   <div class="row">
                     <div class="col-md-4">
                   <label>เลือกโรค</label>
@@ -41,9 +42,9 @@ if (!$_SESSION['userid']) {
                   </select>                
                 </div> 
               
-                <div class="col-md-4 mt-3"> 
+                <div class="col-md-4 mt-2"> 
                 <input type="hidden" name="articles_id" value="<?php echo $articles_id; ?>">               
-                        <button type="submit" class="btn bg-navy btn-flat ml-5" name="saveAD">บันทึก</button>
+                        <button type="submit" class="btn bg-navy ml-5" name="saveAD"><i class="fa fa-save ml-1"></i> บันทึก</button>
                 </div>          
             
               </div>                                   

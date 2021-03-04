@@ -21,7 +21,7 @@
     <?php endif ?> -->
 
       <div class="box-header with-border">
-      <a href="index3.php" class="btn bg-maroon btn-flat mt-1">เพิ่มอาการ</a>
+      <a href="index3.php" class="btn bg-maroon btn-flat mt-1"><i class="fa fa-plus"></i> เพิ่มอาการ</a>
       </div>
       <div class="box-header with-border">
       <h3 class="tc">อาการทั้งหมด</h3>

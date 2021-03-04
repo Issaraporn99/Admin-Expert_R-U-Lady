@@ -59,7 +59,10 @@ include('includes/header.php');
               <input type="text" class="form-control " name="symptom_name" placeholder="อาการ" value="<?php echo $symptom_name; ?>">
             </div>
           </div>
-          <!-- <p  class="ml-1"><input type="file" name="coverimg"/></p> -->
+
+          <!-- รูป -->
+          <div class="mt-2"><input type="file" name="img" /></div>
+          <!-- รูป -->
 
           <div class="mt-2">
 
