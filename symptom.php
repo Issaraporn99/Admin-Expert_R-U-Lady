@@ -9,7 +9,7 @@
 
 <body>
     <?php
-    @session_start();
+    session_start();
     //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
     $mysqli = new mysqli('student.crru.ac.th', '601463046', 'issaraporn@5075', '601463046') or die(mysqli_error($mysqli));
     $symptom_name = '';
@@ -81,8 +81,6 @@
             }
         }
     }
-    ?>
-    <?php
 
     if (isset($_GET['delete'])) {
         $symptom_id = $_GET['delete'];
@@ -91,8 +89,11 @@
             $del = $results['disease_id'];
 
         $mysqli->query("DELETE FROM symptom WHERE symptom_id = $symptom_id") or die($mysqli->error());
-        $mysqli->query("DELETE FROM disease_symptoms WHERE symptom_id = $symptom_id and disease_id = $del") or die($mysqli->error());
         header("location: indexSymShow.php");
+        $mysqli->query("DELETE FROM disease_symptoms WHERE symptom_id = $symptom_id and disease_id = $del") or die($mysqli->error());
+       
+        
+    
     }
 
     if (isset($_GET['edit'])) {

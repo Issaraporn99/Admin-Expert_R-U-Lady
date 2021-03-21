@@ -1,4 +1,14 @@
- <?php
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="css_js/sweetalert.min.js"></script>
+    <script src="css_js/sweetalert.js"></script>
+    <link rel="stylesheet" type="text/css" href="css_js/sweetalert.css">
+</head>
+
+<body>
+    <?php
     session_start();
 
     if (isset($_POST['username'])) {
@@ -37,12 +47,18 @@
                 header("Location: user_page.php");
             }
         } else {
-            echo "<script>";
-            echo "alert(\"User หรือ Password ไม่ถูกต้อง\");";
-            echo "window.history.back()";
-            echo "</script>";
+    ?>
+            <script type='text/javascript'>
+                swal("แจ้งเตือน!", "User หรือ Password ไม่ถูกต้อง", "error").then(function() {
+                    window.history.back();
+                });
+            </script>
+    <?php
         }
     } else {
         header("Location: index.php");
     }
     ?>
+</body>
+
+</html>

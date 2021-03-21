@@ -11,7 +11,11 @@ if (!$_SESSION['userid']) {
   $i = 1;
   //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
   $mysqli = new mysqli('student.crru.ac.th', '601463046', 'issaraporn@5075', '601463046') or die(mysqli_error($mysqli));
-  $result = $mysqli->query("SELECT * FROM question INNER JOIN user USING(`expertise_id`) WHERE user.id=$id ORDER BY `question_date` DESC") or die($mysqli);
+  $result = $mysqli->query("SELECT *
+  FROM `answer`
+  JOIN `question`
+  USING ( `question_id` )
+  WHERE answer.`answer_id` = $answer_id") or die($mysqli);
 
   ?>
   <!-- Main content -->
@@ -69,9 +73,10 @@ if (!$_SESSION['userid']) {
                       <input type="hidden" name="id" value="<?php echo $_SESSION['userid'] ?>">
                       <input type="hidden" name="question_id" value="<?php echo $question_id ?>">
                       <input type="hidden" name="answer_date" value="<?php echo $answer_date; ?>">
+                      <input type="hidden" name="answer_id" value="<?php echo $answer_id; ?>">
 
                     </div>
-                    <button type="submit" class="btn bg-navy btn-flat fl" name="save">ตอบ</button>
+                    <button type="submit" class="btn bg-navy btn-flat fl" name="update">แก้ไข</button>
                   </form>
                 </div>
 

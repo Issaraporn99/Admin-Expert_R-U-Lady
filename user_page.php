@@ -12,14 +12,19 @@ if (!$_SESSION['userid']) {
 
     if (isset($_POST['save2'])) {
         $x = $_POST['x'];
+        $da = $_POST['dates'];
+        $daa = $_POST['datess'];
     } else {
         $x = 5;
+        $da = 2019;
+        $daa = 2021;
     }
     $query = " SELECT COUNT( `disease_id` ) AS cd, disease_name, 
     SUBSTRING( diagnosis_date, 1, 4 ) AS dates
     FROM `diagnosis`
     LEFT JOIN `disease`
     USING ( `disease_id` )
+    WHERE SUBSTRING( diagnosis_date, 1, 4 ) BETWEEN '$da' AND '$daa'
     group by `disease_id`
     order by cd desc LIMIT 0 , $x";
     $result = mysqli_query($con, $query);
@@ -85,7 +90,7 @@ if (!$_SESSION['userid']) {
             <div class="box box-danger">
                 <div class="box-body">
                     <div class="box-header with-border">
-                        <h3 class="box-title">สถิติโรค</h3>
+                        <h3 class="box-title">แสดงสถิติโรคตามปี</h3>
                     </div>
                     <form action="user_page.php" method="POST">
 
@@ -155,13 +160,42 @@ if (!$_SESSION['userid']) {
             <div class="box box-danger">
                 <div class="box-body">
                     <div class="box-header with-border">
-                        <h3 class="box-title">สถิติโรค</h3>
+                        <h3 class="box-title">แสดงสถิติของโรคที่พบสูงสุดในช่วงปี</h3>
                     </div>
                     <form action="user_page.php" method="POST">
-
                         <div class="row ml-5 mt-3">
+                            <?php
+                            //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
+                            $mysqli = new mysqli('student.crru.ac.th', '601463046', 'issaraporn@5075', '601463046') or die(mysqli_error($mysqli));
+                            $result = $mysqli->query("SELECT SUBSTRING( diagnosis_date, 1, 4 ) AS dates
+                                    FROM `diagnosis`
+                                    GROUP BY dates") or die($mysqli);
+                            $result2 = $mysqli->query("SELECT SUBSTRING( diagnosis_date, 1, 4 ) AS datess
+                                    FROM `diagnosis`
+                                    GROUP BY datess") or die($mysqli);
+                            ?>
                             <div class="col-md-2">
-                                <label>เลือกอันดับโรคสูงสุด</label>
+                                <label>เลือกปี </label>
+                                <select name="dates" class="form-control select2">
+                                    <?php foreach ($result as $results) { ?>
+                                        <option value="<?php echo $results['dates']; ?>"><?php echo $results['dates']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>ถึงปี </label>
+                                <select name="datess" class="form-control select2">
+                                    <?php foreach ($result2 as $results) { ?>
+                                        <option value="<?php echo $results['datess']; ?>"><?php echo $results['datess']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                           
+                        </div>
+                        <div class="row ml-5 mt-3">
+                            <div class="col-md-3">
+                                <label>เลือกจำนวนโรคที่ต้องการแสดง</label>
                                 <select name="x" class="form-control select2">
                                     <?php for ($x = 1; $x <= 10; $x++) { ?>
                                         <option value="<?php echo $x; ?>"><?php echo $x; ?></option>

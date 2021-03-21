@@ -9,7 +9,7 @@
     <!-- Content Header (Page header) -->
     <div class="box box-primary">
     <?php require_once 'expertise.php'; ?>
-    <?php 
+    <!-- <?php 
         if(isset($_SESSION['message'])): ?>
 
         <div class="alert alert-<?=$_SESSION['msg_type'] ?>">
@@ -17,7 +17,7 @@
                   unset($_SESSION['message']);
             ?>
         </div>
-    <?php endif ?>
+    <?php endif ?> -->
       <div class="box-header with-border">
         <h3 class="box-title">สาขาความเชี่ยวชาญ</h3>
       </div>
