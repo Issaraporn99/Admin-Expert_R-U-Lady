@@ -21,7 +21,7 @@
             $passwordenc = md5($password);
 
             $query = "INSERT INTO user (username, password, doctorname, office, expertise_id, userlevel)
-                        VALUE ('$username', '$passwordenc', '$doctorname', '$office', '$expertise_id', 'm')";
+                        VALUE ('$username', '$passwordenc', '$doctorname', '$office', '$expertise_id', 'w')";
             $result = mysqli_query($conn, $query);
 
             if ($result) {

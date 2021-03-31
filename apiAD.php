@@ -42,13 +42,9 @@ if (isset($_POST['save2'])){
     $mysqli->query("INSERT INTO disease_symptoms (symptom_id,disease_id) 
                     VALUES ('$symptom_id','$disease_id')")or die($mysqli->error);
 
-?>
-<script type='text/javascript'>
-    swal("สำเร็จ!", "เพิ่มข้อมูลสำเร็จ", "success").then(function() {
-        window.location.back();
-    });
-</script>
-<?php
+echo "<script>";
+echo "window.history.back()";
+echo "</script>";
    }
 if (isset($_GET['edit2'])){
     $symptom_id = $_GET['edit2'];

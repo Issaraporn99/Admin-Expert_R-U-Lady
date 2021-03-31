@@ -1,4 +1,3 @@
-
 <?php 
  include('includes/header.php'); 
  include('includes/navbar.php'); 
@@ -8,7 +7,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="box box-primary">
-    <?php require_once 'expertise.php'; ?>
+    <?php require_once 'before.php'; ?>
     <!-- <?php 
         if(isset($_SESSION['message'])): ?>
 
@@ -19,35 +18,38 @@
         </div>
     <?php endif ?> -->
       <div class="box-header with-border">
-        <h3 class="box-title">สาขาความเชี่ยวชาญ</h3>
+        <h3 class="box-title">คำถามนำ</h3>
       </div>
     <!-- Main content -->
     <section class="content">
-    <form action="expertise.php" method="POST">
-    <input type="hidden" name="expertise_id" value="<?php echo $expertise_id; ?>">
+    <form action="before.php" method="POST">
+    <input type="hidden" name="before_id" value="<?php echo $before_id; ?>">
               <div class="box-body">
+              <div class="row">
                 <div class="col-md-6">
-                  <label for="exampleInputEmail1">เพิ่มสาขาความเชี่ยวชาญ</label>
-                  <input type="text" class="form-control " name="expertise_name" 
-                         placeholder="สาขาความเชี่ยวชาญ" value="<?php echo $expertise_name; ?>">
+                  <label for="exampleInputEmail1">เพิ่มคำถามนำ</label>
+                  <input type="text" class="form-control " name="before_ques" 
+                         placeholder="คำถามนำ" value="<?php echo $before_ques; ?>">
                 </div> 
-              </div>
-              <!-- /.box-body -->
-
-              <div class="box-footer ml-1">
+                <div class=" ml-1 mt-3">
                   <?php if ($update == true):?>
                     <button type="submit" class="btn bg-orange btn-flat " name="update">แก้ไข</button>
                   <?php else: ?>
-                    <button type="submit" class="btn bg-navy btn-flat" name="save">บันทึก</button>
+                    <button type="submit" class="btn bg-navy btn-flat" name="save"><i class="fa fa-save ml-1"></i> บันทึก</button>
                   <?php endif; ?>
                 </div>
+              </div>
+              </div>
+              <!-- /.box-body -->
+
+              
             </form>       
     </section>
 
     <?php 
     //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
       $mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
-      $result = $mysqli->query("SELECT * FROM expertise")or die($mysqli);
+      $result = $mysqli->query("SELECT *FROM `before`")or die($mysqli);
       $i=1;
     ?>
 
@@ -57,7 +59,7 @@
       <thead>
       <tr>
         <th>ที่</th>
-        <th>สาขาความเชี่ยวชาญ</th>
+        <th>ชื่อคำถาม</th>
         <th>จัดการข้อมูล</th>
       </tr>
       </thead>
@@ -66,11 +68,11 @@
             while ($row = $result->fetch_assoc()):?>
       <tr>
         <td><?php echo $i; ?></td>
-        <td><?php echo $row['expertise_name']; ?></td>
+        <td><?php echo $row['before_ques']; ?></td>
         <td>
-            <a href="index5.php?edit=<?php echo $row['expertise_id']; ?>"
+            <a href="beforeSym.php?edit=<?php echo $row['before_id']; ?>"
                class="btn bg-orange btn-flat "><i class="fa fa-fw fa-edit"></i></a>
-            <a href="expertise.php?delete=<?php echo $row['expertise_id']; ?>"
+            <a href="before.php?delete=<?php echo $row['before_id']; ?>"
                class="btn btn-danger btn-flat"><span class="glyphicon glyphicon-trash"></span></a>
         </td> 
       </tr>

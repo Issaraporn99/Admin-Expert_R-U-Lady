@@ -44,9 +44,9 @@
     <!-- Logo -->
     <a href="user_page.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>D</b>AI</span>
+      <span class="logo-mini"><b>R U</b>L</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Doctor</b>AIGA</span>
+      <span class="logo-lg"><b>R U </b> Lady</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -110,8 +110,14 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="user_page.php"><i class="fa fa-bar-chart"></i>สถิติ</a></li>
-            <li><a href="articlesShow.php"><i class="fa fa-file-text"></i>บทความ</a></li>
+            <li class="active treeview"><a href="user_page.php"><i class="fa fa-bar-chart"></i>สถิติ</a>
+            <ul class="treeview-menu">
+            <li><a href="user_page.php"><i class="fa fa fa-circle-o"></i>การตรวจพบโรคตามปี</a></li>
+            <li><a href="user_page2.php"><i class="fa fa fa-circle-o"></i>การตรวจพบโรคสูงสุด</a></li>           
+          </ul>
+            </li>
+            <li><a href="articlesShow.php"><i class="fa fa-file-text"></i>บทความของฉัน</a></li>
+            <li><a href="articlesShowAll.php"><i class="fa fa-file-text"></i>บทความทั้งหมด</a></li>
             <li><a href="qaShow.php"><i class="fa fa-question-circle"></i>ถาม-ตอบ</a></li>           
           </ul>
         </li> 

@@ -32,6 +32,7 @@ session_start();
       <div class="box-body ml-5"> 
       <form action="profileApi.php" method="POST">
           <div class="box-body">
+            
               <div class="row ">             
                     <div class="col-md-6">
                       <input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -61,8 +62,6 @@ session_start();
   </div>  
   </div>
   </div>
-  <!-- /.content-wrapper -->
-  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
   <?php include('includes/scripts.php'); 
  include('includes/footer.php'); 
  ?>

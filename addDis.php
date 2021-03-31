@@ -61,9 +61,9 @@ include('includes/header.php');
                                     <input type="text" class="form-control mt-1" name="disease_risk" placeholder="กลุ่มเสี่ยง" value="<?php echo $disease_risk; ?>">
                               </div>
 
-                              <div class="form-group col-md-6">
-                                    <label>โอกาสเกิด</label>
-                                    <input type="text" class="form-control mt-5" name="disease_chance" placeholder="โอกาสเกิด" value="<?php echo $disease_chance; ?>">
+                              <div class="form-group col-md-6 ">
+                                    <label>โอกาสเกิดโรค</label>
+                                    <input type="text" class="form-control mt-1" name="disease_chance" placeholder="โอกาสเกิดโรค" value="<?php echo $disease_chance; ?>">
                               </div>
                         </div>
                         <?php

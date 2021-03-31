@@ -66,8 +66,6 @@ if (!$_SESSION['userid']) {
       </div>
     </div>
   </div>
-  <!-- /.content-wrapper -->
-  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
   <?php include('includes/scripts.php');
   include('includes/footer.php');
   ?>

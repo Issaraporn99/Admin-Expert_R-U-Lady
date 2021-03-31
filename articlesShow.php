@@ -13,7 +13,7 @@ if (!$_SESSION['userid']) {
   <form role="form">
               <div class="box-body">
               <div class="box-header with-border">
-                  <h3 class="tc">บทความ</h3>
+                  <h3 class="tc">บทความของฉัน</h3>
               </div>
                 <div class="col-md-6">
                   <a href="articles.php" class="btn bg-olive"><i class="fa fa-pencil ml-1"></i> เขียนบทความ</a>          
@@ -68,7 +68,7 @@ if (!$_SESSION['userid']) {
               <?php foreach($ddd as $ddds){?>                   
               <p>เกี่ยวข้องกับโรค : <?php echo $ddds['disease_name'];?></p>            
               <?php } ?> 
-              <p>ผู้เขียน : <?php echo $row['doctorname']; ?></p>
+              <p>ผู้เผยแพร่ : <?php echo $row['doctorname']; ?></p>
   
         
               </div>

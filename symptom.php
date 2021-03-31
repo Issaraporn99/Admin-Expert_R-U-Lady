@@ -22,6 +22,7 @@
         $symptom_name = $_POST['symptom_name'];
         $group_id = $_POST['group_id'];
         $status = $_POST['r3'];
+        $before = $_POST['before_id'];
         //เช็คซ้ำ
 
         $result1 = $mysqli->query("SELECT symptom_name FROM symptom WHERE symptom_name = '$symptom_name'");
@@ -57,7 +58,7 @@
                 //คัดลอกไฟล์ไปยังโฟเดอ
                 move_uploaded_file($_FILES['img']['tmp_name'], $path_copy);
             }
-            $mysqli->query("INSERT INTO symptom (symptom_name,group_id,status,img) VALUES ('$symptom_name','$group_id',$status,'$path_link')") or
+            $mysqli->query("INSERT INTO symptom (symptom_name,group_id,status,before_id,img) VALUES ('$symptom_name','$group_id',$status,$before,'$path_link')") or
                 die($mysqli->error);
 
             if ($mysqli) {
@@ -103,17 +104,22 @@
         FROM symptom
         JOIN group_symptom
         USING ( group_id )
+        left JOIN `before`
+        USING ( `before_id` )
         WHERE symptom_id=$symptom_idd") or die($mysqli->error());
 
         $row = $result->fetch_array();
         $symptom_name = $row['symptom_name'];
         $group_name = $row['group_name'];
+        $before_ques = $row['before_ques'];
     }
 
 
     if (isset($_POST['update'])) {
         $symptom_idd = $_POST['symptom_id'];
         $symptom_name = $_POST['symptom_name'];
+        $before_ques = $_POST['before_ques'];
+        $before_id = $_POST['before_id'];
              //ตัวแปรหน้ารูป
              $name_img = "img";
 
@@ -134,7 +140,7 @@
                  move_uploaded_file($_FILES['img']['tmp_name'], $path_copy);
              }
 
-        $mysqli->query("UPDATE symptom SET symptom_name='$symptom_name',img='$path_link' WHERE symptom_id=$symptom_idd") or
+        $mysqli->query("UPDATE symptom SET symptom_name='$symptom_name',img='$path_link',before_id='$before_id' WHERE symptom_id=$symptom_idd") or
             die($mysqli->error);
         if ($mysqli) {
         ?>

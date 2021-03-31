@@ -37,6 +37,7 @@
             $_SESSION['expertise_id'] = $row['expertise_id'];
             $_SESSION['expertise_name'] = $row['expertise_name'];
             $_SESSION['userlevel'] = $row['userlevel'];
+            $_SESSION['img'] = $row['img'];
 
 
             if ($_SESSION['userlevel'] == 'a') {
@@ -45,6 +46,14 @@
 
             if ($_SESSION['userlevel'] == 'm') {
                 header("Location: user_page.php");
+            }
+            if ($_SESSION['userlevel'] == 'w') {?>
+                <script type='text/javascript'>
+                swal("แจ้งเตือน!", "ข้อมูลของท่านกำลังรอการยืนยันจากระบบ", "warning").then(function() {
+                    window.history.back();
+                });
+            </script>
+            <?php
             }
         } else {
     ?>

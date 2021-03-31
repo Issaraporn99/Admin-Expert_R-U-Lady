@@ -60,11 +60,11 @@ if (!$_SESSION['userid']) {
                                         <tr>
                                             <td><?php echo $i; ?></td>
                                             <td><?php echo $row['question']; ?></td>
-                                            <td><?php if($row['question_name']=="null"){ 
+                                            <td><?php if ($row['question_name'] == "null") {
                                                 ?><p>ไม่ระบุชื่อ</p>
                                                 <?php } else {
                                                     echo $row['question_name'];
-                                                }?>
+                                                } ?>
                                             </td>
                                             <td><?php echo $row['question_date']; ?></td>
                                             <td><?php if ($row['answer_id'] == null) {
@@ -74,7 +74,7 @@ if (!$_SESSION['userid']) {
                                                     <p class="text-success">ตอบแล้ว</p> <?php
                                                                                     } ?>
                                             </td>
-                                            <td>                                   
+                                            <td>
                                                 <button type="button" class="btn btn-info " data-toggle="modal" data-target="#exampleModal<?php echo $row['question_id']; ?>">
                                                     <span class="glyphicon glyphicon-file"></span></button>
 
@@ -86,20 +86,27 @@ if (!$_SESSION['userid']) {
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                                 <h5 class="modal-title" id="exampleModalLabel">
-                                                                    <h3>คำถามจากคุณ <?php echo $row['question_name']; ?></h3>
+                                                                    <h3>คำถามจากคุณ <?php if ($row['question_name'] == "null") {
+                                                                                    ?><h5>ไม่ระบุชื่อ</h5>
+                                                                        <?php } else {
+                                                                                        echo $row['question_name'];
+                                                                                    } ?></h3>
                                                                 </h5>
 
                                                             </div>
 
-                                                            <div class="modal-body">
-
+                                                            <div class="modal-body" style="width: 100%">
                                                                 <div class="post-content">
                                                                     <div class="post-container">
                                                                         <img src="includes/2698690-512.png" alt="user" class="profile-photo-md pull-left">
                                                                         <?php $question_id = $row['question_id']; ?>
                                                                         <div class="post-detail">
                                                                             <div class="user-info">
-                                                                                <h5 class="name"><a href="timeline.html" class="profile-link"></a><?php echo $row['question_name']; ?></h5>
+                                                                                <h5 class="name"><a href="timeline.html" class="profile-link"></a><?php if ($row['question_name'] == "null") {
+                                                                                                                                                    ?><p>ไม่ระบุชื่อ</p>
+                                                                                    <?php } else {
+                                                                                                                                                        echo $row['question_name'];
+                                                                                                                                                    } ?></h5>
                                                                                 <p class="text-muted"><?php echo $row['question_date']; ?></p>
                                                                             </div>
                                                                             <div class="line-divider"></div>
@@ -117,7 +124,8 @@ if (!$_SESSION['userid']) {
                                                                                 <div class="post-comment">
                                                                                     <div class="row">
                                                                                         <p class="profile-link name"><?php echo $row2['doctorname']; ?></p>
-                                                                                        <p><?php echo $row2['answer_name']; ?>
+                                                                                        <p class="text-muted"><?php echo $row2['answer_date']; ?>
+                                                                                        <p class="mr-2"><?php echo $row2['answer_name']; ?>
                                                                                             <?php if ($row2['id'] == $_SESSION['userid']) { ?>
                                                                                                 <a href="QA.php?edit=<?php echo $row2['answer_id']; ?>">
                                                                                                     <i class="fa fa-fw fa-edit"></i>
@@ -125,7 +133,7 @@ if (!$_SESSION['userid']) {
                                                                                                 <a href="QAapi.php?del=<?php echo $row2['answer_id']; ?>">
                                                                                                     <i class="fa fa-fw fa-trash"></i>
                                                                                                 </a>
-                                                                                              
+
 
                                                                                             <?php } ?>
                                                                                         </p>
@@ -139,9 +147,9 @@ if (!$_SESSION['userid']) {
 
                                                                             <form action="QAapi.php" method="POST">
 
-                                                                                <div class="post-comment">
+                                                                                <div class="post-comment" >
                                                                                     <input type="hidden" name="answer_id" value="<?php echo $answer_id; ?>">
-                                                                                    <textarea class="form-control" name="answer_name" rows="3" placeholder="แสดงความคิดเห็น ..."><?php echo $answer_name; ?></textarea>
+                                                                                    <textarea style="width: 100%" class="form-control" name="answer_name" rows="4" placeholder="แสดงความคิดเห็น ..."><?php echo $answer_name; ?></textarea>
 
                                                                                     <input type="hidden" name="id" value="<?php echo $_SESSION['userid'] ?>">
                                                                                     <input type="hidden" name="question_id" value="<?php echo $question_id ?>">

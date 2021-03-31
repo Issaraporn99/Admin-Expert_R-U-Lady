@@ -24,6 +24,7 @@ include('includes/header.php');
     //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
     $mysqli = new mysqli('student.crru.ac.th', '601463046', 'issaraporn@5075', '601463046') or die(mysqli_error($mysqli));
     $result = $mysqli->query("SELECT * FROM group_symptom") or die($mysqli);
+    $resultBf = $mysqli->query("SELECT *FROM `before`") or die($mysqli);
 
     $dis = $mysqli->query("SELECT * FROM disease") or die($mysqli);
 
@@ -72,7 +73,19 @@ include('includes/header.php');
               </select>
             </div>
             <!-- select -->
+            <!-- select -->
 
+            <div class="col-md-5 ml-2"><br>
+              <label>คำถามนำ</label>
+              <select name="before_id" class="form-control select2">
+                <option value="0"><?php echo "ไม่มี"; ?></option>
+                <?php foreach ($resultBf as $results) { ?>
+                  <option value="<?php echo $results['before_id']; ?>"><?php echo $results['before_ques']; ?></option>
+                <?php } ?>
+              </select>
+            </div>
+
+            <!-- select -->
             <div class="col-md-6 ml-2"> <br>
               <input type="hidden" name="symptom_id" value="<?php echo $symptom_id; ?>">
               <label for="exampleInputEmail1">อาการ</label>
@@ -92,7 +105,7 @@ include('includes/header.php');
               <button type="submit" class="btn btn-info btn-flat" name="save"><i class="fa fa-save ml-1"></i> บันทึก</button>
             <?php endif; ?>
           </div>
-         
+
         </div>
       </form>
 
