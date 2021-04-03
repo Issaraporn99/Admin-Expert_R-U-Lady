@@ -1,3 +1,13 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="css_js/sweetalert.min.js"></script>
+    <script src="css_js/sweetalert.js"></script>
+    <link rel="stylesheet" type="text/css" href="css_js/sweetalert.css">
+</head>
+
+<body>
 <?php
 session_start();
 
@@ -14,9 +24,18 @@ if (!$_SESSION['userid']) {
         $x = $_POST['x'];
         $da = $_POST['dates'];
         $daa = $_POST['datess'];
+        if($da>$daa){
+            ?>
+            <script type='text/javascript'>
+                swal("แจ้งเตือน!!", "กรุณาเลือกช่วงปีให้ถูกต้อง เช่น 2019 - 2021", "error").then(function() {
+                    window.location = 'user_page2.php';
+                });
+            </script>
+            <?php
+        }
     } else {
         $x = 5;
-        $da = 2019;
+        $da = 2018;
         $daa = 2021;
     }
     $query = " SELECT COUNT( `disease_id` ) AS cd, disease_name, 
@@ -122,33 +141,33 @@ if (!$_SESSION['userid']) {
                     label: 'สถิติการตรวจพบโรค' + ' (ครั้ง) ' +  ' ช่วงปี '+[<?php echo $da; ?>] +' ถึง '+' ปี '+[<?php echo $daa; ?>] ,
                     data: [<?php echo $totol2; ?>],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
+                        '#da9ff9',
+                        '#b088f9',
+                        '#98acf8',
+                        '#bedcfa',
+                        '#da9ff9',
+                        '#b088f9',
+                        '#98acf8',
+                        '#bedcfa',
+                        '#98acf8',
+                        '#bedcfa'
 
 
                     ],
                     borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(255,99,132,1)',
+                        '#fcf8ec',
+                        '#fcf8ec',
+                        '#fcf8ec',
+                        '#fcf8ec',
+                        '#fcf8ec',
+                        '#fcf8ec',
+                        '#fcf8ec',
+                        '#fcf8ec',
+                        '#fcf8ec',
+                        '#fcf8ec',
 
                     ],
-                    borderWidth: 1
+                    borderWidth: 2
                 }]
             },
             options: {
@@ -209,3 +228,6 @@ if (!$_SESSION['userid']) {
     include('includes/scripts.php');
 }
 ?>
+</body>
+
+</html>

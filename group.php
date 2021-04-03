@@ -47,15 +47,31 @@
 
     if (isset($_GET['delete'])) {
         $group_id = $_GET['delete'];
-        $mysqli->query("DELETE FROM group_symptom WHERE group_id=$group_id") or die($mysqli->error());
+        $result = $mysqli->query("SELECT COUNT( `group_id` ) AS c FROM `symptom` WHERE `group_id` = $group_id")  or die($mysqli->error());;
+        foreach ($result as $results)
+        $del = $results['c'];
+
+        echo $del;
+        if ($del==0) {          
+            $mysqli->query("DELETE FROM group_symptom WHERE group_id=$group_id") or die($mysqli->error());
         ?>
-        <script type='text/javascript'>
-            swal("สำเร็จ!", "ลบข้อมูลสำเร็จ", "success").then(function() {
-                window.location = 'index2.php';
-            });
-        </script>
-    <?php
+            <script type='text/javascript'>
+                swal("สำเร็จ!", "ลบข้อมูลสำเร็จ", "success").then(function() {
+                    window.location = 'index2.php';
+                });
+            </script>
+        <?php
+        } else {
+        ?>
+            <script type='text/javascript'>
+                swal("แจ้งเตือน!", "ไม่สามารถลบข้อมูลได้เนื่องจากมีข้อมูลสัมพันธ์กัน", "warning").then(function() {
+                    window.location = 'index2.php';
+                });
+            </script>
+        <?php
+        }
     }
+
 
 
     if (isset($_GET['edit'])) {
@@ -74,7 +90,7 @@
         $organ_id = $_POST['organ_id'];
         $mysqli->query("UPDATE group_symptom SET group_name='$group_name', organ_id='$organ_id' WHERE group_id=$group_id") or
             die($mysqli->error);
-    ?>
+        ?>
         <script type='text/javascript'>
             swal("สำเร็จ!", "แก้ไขข้อมูลสำเร็จ", "success").then(function() {
                 window.location = 'index2.php';

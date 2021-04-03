@@ -1,3 +1,13 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="css_js/sweetalert.min.js"></script>
+    <script src="css_js/sweetalert.js"></script>
+    <link rel="stylesheet" type="text/css" href="css_js/sweetalert.css">
+</head>
+
+<body>
 <?php
 //$mysqli = new mysqli('localhost','root','','doctor') or die(mysqli_error($mysqli));
 $mysqli = new mysqli('student.crru.ac.th','601463046','issaraporn@5075','601463046') or die(mysqli_error($mysqli));
@@ -19,12 +29,27 @@ header("location: articlesDis.php");
 }
 if (isset($_GET['delete'])){
     $articles_id = $_GET['delete'];
+    $result = $mysqli->query("SELECT count(`articles_id`) AS c FROM `articles_disease` WHERE `articles_id` = $articles_id")  or die($mysqli->error());;
+    foreach ($result as $results)
+    $del = $results['c'];
+    if ($del == 0) {
     $mysqli->query("DELETE FROM articles WHERE articles_id=$articles_id")or die($mysqli->error());
-
-    $_SESSION['message'] = "ลบข้อมูลสำเร็จ";
-    $_SESSION['msg_type'] = "danger";
-
-    header("location: articlesShow.php");
+    ?>
+    <script type='text/javascript'>
+        swal("สำเร็จ!", "ลบข้อมูลสำเร็จ", "success").then(function() {
+            window.location = 'articlesShow.php';
+        });
+    </script>
+<?php
+} else {
+    ?>
+    <script type='text/javascript'>
+        swal("แจ้งเตือน!", "ไม่สามารถลบข้อมูลได้เนื่องจากมีข้อมูลสัมพันธ์กัน", "warning").then(function() {
+            window.location = 'articlesShow.php';
+        });
+    </script>
+<?php
+}
 }
 
 if (isset($_GET['edit'])){
@@ -71,3 +96,7 @@ if (isset($_POST['saveAD'])){
    unset($_SESSION['nameArticles']);
    header("location: articlesShow.php");
    }
+   ?>
+   </body>
+
+   </html>

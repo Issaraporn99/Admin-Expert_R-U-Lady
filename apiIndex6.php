@@ -15,16 +15,31 @@
 
     if (isset($_GET['delete'])) {
         $id = $_GET['delete'];
-        $mysqli->query("DELETE FROM user WHERE id=$id") or die($mysqli->error());
+        $result = $mysqli->query("SELECT count(`id`) AS c FROM `articles` WHERE `id` = $id")  or die($mysqli->error());;
+        $result2 = $mysqli->query("SELECT count(`id`) AS cc FROM `answer` WHERE `id` = $id")  or die($mysqli->error());;
+        foreach ($result as $results)
+            $del = $results['c'];
 
+        foreach ($result2 as $resultss)
+            $del2 = $resultss['cc'];
+        if ($del == 0 && $del2 == 0) {
+            $mysqli->query("DELETE FROM user WHERE id=$id") or die($mysqli->error());
     ?>
-        <script type='text/javascript'>
-            swal("สำเร็จ!", "ลบข้อมูลสำเร็จ", "success").then(function() {
-                window.location = 'index6.php';
-            });
-        </script>
-    <?php
-
+            <script type='text/javascript'>
+                swal("สำเร็จ!", "ลบข้อมูลสำเร็จ", "success").then(function() {
+                    window.location = 'index6.php';
+                });
+            </script>
+        <?php
+        } else {
+        ?>
+            <script type='text/javascript'>
+                swal("แจ้งเตือน!", "ไม่สามารถลบข้อมูลได้เนื่องจากมีข้อมูลสัมพันธ์กัน", "warning").then(function() {
+                    window.location = 'index6.php';
+                });
+            </script>
+        <?php
+        }
     }
 
     if (isset($_GET['edit'])) {
@@ -47,15 +62,41 @@
         $office = $_POST['office'];
         $expertise_name = $_POST['expertise_name'];
         $expertise_id = $_POST['expertise_id'];
-        
+
         $mysqli->query("UPDATE user SET userlevel = 'm' WHERE id=$id") or die($mysqli->error);
-    ?>
+        ?>
         <script type='text/javascript'>
             swal("สำเร็จ!", "ยืนยันการสมัครสมาชิกสำเร็จ", "success").then(function() {
                 window.location = 'index6.php';
             });
         </script>
+        <?php
+    }
+    if (isset($_GET['delete2'])) {
+        $question_id = $_GET['delete2'];
+        $result = $mysqli->query("SELECT count(`question_id`) AS c FROM `answer` WHERE `question_id` = $question_id")  or die($mysqli->error());
+        foreach ($result as $results)
+            $del = $results['c'];
+
+
+        if ($del == 0) {
+            $mysqli->query("DELETE FROM question WHERE question_id=$question_id") or die($mysqli->error());
+        ?>
+            <script type='text/javascript'>
+                swal("สำเร็จ!", "ลบข้อมูลสำเร็จ", "success").then(function() {
+                    window.location = 'question.php';
+                });
+            </script>
+        <?php
+        } else {
+        ?>
+            <script type='text/javascript'>
+                swal("แจ้งเตือน!", "ไม่สามารถลบข้อมูลได้เนื่องจากมีข้อมูลสัมพันธ์กัน", "warning").then(function() {
+                    window.location = 'question.php';
+                });
+            </script>
     <?php
+        }
     }
     ?>
 </body>

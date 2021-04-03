@@ -37,7 +37,7 @@
         ?>
             <script type='text/javascript'>
                 swal("แจ้งเตือน!", "เพิ่มข้อมูลสำเร็จ", "success").then(function() {
-                    window.location = 'beforeSym.php';
+                    window.location = 'index3.php';
                 });
             </script>
         <?php
@@ -48,15 +48,27 @@
 
     if (isset($_GET['delete'])) {
         $before_id = $_GET['delete'];
-        $mysqli->query("DELETE FROM `before` WHERE before_id=$before_id") or die($mysqli->error());
-
+        $result = $mysqli->query("SELECT count(`before_id`) AS c FROM `symptom` WHERE `before_id` = $before_id")  or die($mysqli->error());;
+        foreach ($result as $results)
+            $del = $results['c'];
+        if ($del == 0) {
+            $mysqli->query("DELETE FROM `before` WHERE before_id=$before_id") or die($mysqli->error());
         ?>
-        <script type='text/javascript'>
-            swal("แจ้งเตือน!", "ลบข้อมูลสำเร็จ", "success").then(function() {
-                window.location = 'beforeSym.php';
-            });
-        </script>
-    <?php
+            <script type='text/javascript'>
+                swal("แจ้งเตือน!", "ลบข้อมูลสำเร็จ", "success").then(function() {
+                    window.location = 'beforeSym.php';
+                });
+            </script>
+        <?php
+        } else {
+        ?>
+            <script type='text/javascript'>
+                swal("แจ้งเตือน!", "ไม่สามารถลบข้อมูลได้เนื่องจากมีข้อมูลสัมพันธ์กัน", "warning").then(function() {
+                    window.location = 'beforeSym.php';
+                });
+            </script>
+        <?php
+        }
     }
 
     if (isset($_GET['edit'])) {
@@ -74,7 +86,7 @@
         $mysqli->query("UPDATE `before` SET before_ques='$before_ques' WHERE before_id=$before_id") or
             die($mysqli->error);
 
-    ?>
+        ?>
         <script type='text/javascript'>
             swal("แจ้งเตือน!", "แก้ไขข้อมูลสำเร็จ", "success").then(function() {
                 window.location = 'beforeSym.php';

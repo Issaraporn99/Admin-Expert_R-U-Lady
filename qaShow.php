@@ -14,7 +14,7 @@ if (!$_SESSION['userid']) {
         <div class="box box-danger">
             <?php require_once 'QAapi.php'; ?>
             <div class="box-header with-border">
-                <h3 class="tc">คำถาม</h3>
+                <h3 class="tc">คำถามจากผู้หญิง</h3>
             </div>
             <!-- Main content -->
             <section class="content">
@@ -54,7 +54,7 @@ if (!$_SESSION['userid']) {
                                 </thead>
                                 <tbody>
                                     <?php
-                                    while ($row = $result->fetch_assoc()) :
+                                    while ($row = $result->fetch_assoc()) : $date = date_create($row['question_date']);
 
                                     ?>
                                         <tr>
@@ -66,7 +66,7 @@ if (!$_SESSION['userid']) {
                                                     echo $row['question_name'];
                                                 } ?>
                                             </td>
-                                            <td><?php echo $row['question_date']; ?></td>
+                                            <td><?php echo date_format($date, 'd/m/Y H:i:s'); ?></td>
                                             <td><?php if ($row['answer_id'] == null) {
                                                 ?> <p class="text-danger">ยังไม่ได้ตอบ</p>
                                                 <?php
@@ -102,12 +102,12 @@ if (!$_SESSION['userid']) {
                                                                         <?php $question_id = $row['question_id']; ?>
                                                                         <div class="post-detail">
                                                                             <div class="user-info">
-                                                                                <h5 class="name"><a href="timeline.html" class="profile-link"></a><?php if ($row['question_name'] == "null") {
-                                                                                                                                                    ?><p>ไม่ระบุชื่อ</p>
+                                                                                <h5 class="name"><a href="timeline.html" class="profile-link"></a>ผู้ถาม : <?php if ($row['question_name'] == "null") {
+                                                                                                                                                            ?><p>ไม่ระบุชื่อ</p>
                                                                                     <?php } else {
-                                                                                                                                                        echo $row['question_name'];
-                                                                                                                                                    } ?></h5>
-                                                                                <p class="text-muted"><?php echo $row['question_date']; ?></p>
+                                                                                                                                                                echo $row['question_name'];
+                                                                                                                                                            } ?></h5>
+                                                                                <p class="text-muted"><?php echo date_format($date, 'd/m/Y H:i:s'); ?></p>
                                                                             </div>
                                                                             <div class="line-divider"></div>
                                                                             <div class="post-text">
@@ -119,13 +119,11 @@ if (!$_SESSION['userid']) {
                                    LEFT JOIN user USING ( id )
                                    WHERE question.question_id=$question_id") or die($mysqli); ?>
 
-                                                                            <?php while ($row2 = $result2->fetch_assoc()) : ?>
+                                                                            <?php while ($row2 = $result2->fetch_assoc()) : $date = date_create($row2['answer_date']); ?>
 
                                                                                 <div class="post-comment">
                                                                                     <div class="row">
-                                                                                        <p class="profile-link name"><?php echo $row2['doctorname']; ?></p>
-                                                                                        <p class="text-muted"><?php echo $row2['answer_date']; ?>
-                                                                                        <p class="mr-2"><?php echo $row2['answer_name']; ?>
+                                                                                        <p class="profile-link namedt">ผู้ตอบ : <?php echo $row2['doctorname']; ?>
                                                                                             <?php if ($row2['id'] == $_SESSION['userid']) { ?>
                                                                                                 <a href="QA.php?edit=<?php echo $row2['answer_id']; ?>">
                                                                                                     <i class="fa fa-fw fa-edit"></i>
@@ -137,6 +135,12 @@ if (!$_SESSION['userid']) {
 
                                                                                             <?php } ?>
                                                                                         </p>
+                                                                                        <p class="text-muted"><?php echo date_format($date, 'd/m/Y H:i:s'); ?>
+
+                                                                                        </p>
+                                                                                        <p class="mr-5"><?php echo $row2['answer_name']; ?>
+
+                                                                                        </p>
                                                                                     </div>
                                                                                 </div>
 
@@ -147,7 +151,7 @@ if (!$_SESSION['userid']) {
 
                                                                             <form action="QAapi.php" method="POST">
 
-                                                                                <div class="post-comment" >
+                                                                                <div class="post-comment">
                                                                                     <input type="hidden" name="answer_id" value="<?php echo $answer_id; ?>">
                                                                                     <textarea style="width: 100%" class="form-control" name="answer_name" rows="4" placeholder="แสดงความคิดเห็น ..."><?php echo $answer_name; ?></textarea>
 

@@ -85,16 +85,27 @@
 
     if (isset($_GET['delete'])) {
         $symptom_id = $_GET['delete'];
-        $de = $mysqli->query("SELECT * FROM `disease_symptoms` WHERE `symptom_id` = $symptom_id") or die($mysqli->error());
+        $de = $mysqli->query("SELECT count(symptom_id)as c FROM `disease_symptoms` WHERE `symptom_id` = $symptom_id") or die($mysqli->error());
         foreach ($de as $results)
-            $del = $results['disease_id'];
-
+            $del = $results['c'];
+            if ($del == 0) {
         $mysqli->query("DELETE FROM symptom WHERE symptom_id = $symptom_id") or die($mysqli->error());
-        header("location: indexSymShow.php");
-        $mysqli->query("DELETE FROM disease_symptoms WHERE symptom_id = $symptom_id and disease_id = $del") or die($mysqli->error());
-       
-        
-    
+        ?>
+            <script type='text/javascript'>
+                swal("สำเร็จ!", "ลบข้อมูลสำเร็จ", "success").then(function() {
+                    window.location = 'indexSymShow.php';
+                });
+            </script>
+        <?php
+        } else {
+        ?>
+            <script type='text/javascript'>
+                swal("แจ้งเตือน!", "ไม่สามารถลบข้อมูลได้เนื่องจากมีข้อมูลสัมพันธ์กัน", "warning").then(function() {
+                    window.location = 'indexSymShow.php';
+                });
+            </script>
+        <?php
+        }
     }
 
     if (isset($_GET['edit'])) {

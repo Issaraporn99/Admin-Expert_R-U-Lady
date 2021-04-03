@@ -35,7 +35,7 @@ if (!$_SESSION['userid']) {
         }
     } else {
         $disease_id = 1;
-        $da = 2019;
+        $da = 2018;
         $daa = 2021;
     }
     $query = "SELECT COUNT( `disease_id` ) AS cd, disease_name, SUBSTRING( diagnosis_date, 1, 4 ) AS dates
@@ -148,26 +148,31 @@ if (!$_SESSION['userid']) {
                     label: 'สถิติการตรวจพบโรค' + [<?php echo $name; ?>][0] + ' (ครั้ง) ' + ' ช่วงปี '+[<?php echo $da; ?>] +' ถึง '+' ปี '+[<?php echo $daa; ?>] ,
                     data: [<?php echo $totol; ?>],
                     backgroundColor: [
-                        // 'rgba(255, 99, 132, 0.2)',
-                        // 'rgba(54, 162, 235, 0.2)',
-                        // 'rgba(255, 206, 86, 0.2)',
-                        // 'rgba(75, 192, 192, 0.2)',
-                        // 'rgba(153, 102, 255, 0.2)',
-                        // 'rgba(255, 159, 64, 0.2)'
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
+                        '#16c79a',
+                        '#19456b',
+                        '#11698e',               
+                        '#ffce89',
+                        '#16c79a',
+                        '#19456b',
+                        '#11698e',               
+                        '#ffce89',
+                        '#16c79a',
+                        '#19456b',
+                        '#11698e',               
+                        '#ffce89',
+              
                     ],
                     borderColor: [
-                        // 'rgba(255,99,132,1)',
-                        // 'rgba(54, 162, 235, 1)',
-                        // 'rgba(255, 206, 86, 1)',
-                        // 'rgba(75, 192, 192, 1)',
-                        // 'rgba(153, 102, 255, 1)',
-                        // 'rgba(255, 159, 64, 1)'
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(75, 192, 192, 1)'
+                        '#f3ecc2',
+                        '#f3ecc2',
+                        '#f3ecc2',
+                        '#f3ecc2',
+                        '#f3ecc2',                
+                        '#f3ecc2',
+                        '#f3ecc2',
+                        '#f3ecc2',
+                        '#f3ecc2',
+                        '#f3ecc2'
                     ],
                     borderWidth: 1
                 }]

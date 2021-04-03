@@ -48,15 +48,27 @@
 
     if (isset($_GET['delete'])) {
         $expertise_id = $_GET['delete'];
-        $mysqli->query("DELETE FROM expertise WHERE expertise_id=$expertise_id") or die($mysqli->error());
-
+        $result = $mysqli->query("SELECT COUNT( `expertise_id` ) AS c FROM `user` WHERE `expertise_id` = $expertise_id")  or die($mysqli->error());;
+        foreach ($result as $results)
+            $del = $results['c'];
+        if ($del == 0) {
+            $mysqli->query("DELETE FROM expertise WHERE expertise_id=$expertise_id") or die($mysqli->error());
+            ?>
+            <script type='text/javascript'>
+                swal("สำเร็จ!", "ลบข้อมูลสำเร็จ", "success").then(function() {
+                    window.location = 'index5.php';
+                });
+            </script>
+        <?php
+        } else {
         ?>
-        <script type='text/javascript'>
-            swal("แจ้งเตือน!", "ลบข้อมูลสำเร็จ", "success").then(function() {
-                window.location = 'index5.php';
-            });
-        </script>
-    <?php
+            <script type='text/javascript'>
+                swal("แจ้งเตือน!", "ไม่สามารถลบข้อมูลได้เนื่องจากมีข้อมูลสัมพันธ์กัน", "warning").then(function() {
+                    window.location = 'index5.php';
+                });
+            </script>
+        <?php
+        }
     }
 
     if (isset($_GET['edit'])) {
@@ -74,7 +86,7 @@
         $mysqli->query("UPDATE expertise SET expertise_name='$expertise_name' WHERE expertise_id=$expertise_id") or
             die($mysqli->error);
 
-    ?>
+        ?>
         <script type='text/javascript'>
             swal("แจ้งเตือน!", "แก้ไขข้อมูลสำเร็จ", "success").then(function() {
                 window.location = 'index5.php';

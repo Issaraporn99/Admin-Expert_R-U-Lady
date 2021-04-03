@@ -47,6 +47,9 @@
 .mr-2{
   margin-right: 2%;
 }
+.mr-5{
+   margin-right: 5%;
+ }
 body {
    font-family: 'Prompt', sans-serif;
    font-weight: 400;
@@ -144,7 +147,7 @@ body {
     color: dodgerblue;
  }
  .namedt{
-   color: rgb(255, 199, 94);
+   color: brown;
 }
  .fl{
     float: right;

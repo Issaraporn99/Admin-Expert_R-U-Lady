@@ -73,7 +73,7 @@
             <a href="beforeSym.php?edit=<?php echo $row['before_id']; ?>"
                class="btn bg-orange btn-flat "><i class="fa fa-fw fa-edit"></i></a>
             <a href="before.php?delete=<?php echo $row['before_id']; ?>"
-               class="btn btn-danger btn-flat"><span class="glyphicon glyphicon-trash"></span></a>
+            onclick="return confirm('คุณต้องการที่จะลบข้อมูลนี้หรือไม่?')" class="btn btn-danger btn-flat"><span class="glyphicon glyphicon-trash"></span></a>
         </td> 
       </tr>
       <?php $i++; ?>

@@ -75,7 +75,8 @@ include('includes/navbar.php');
                     <td><img src="<?php echo $row['img']; ?>" style="width: 100%;"></td>
                     <td>
                       <a href="editSym.php?edit=<?php echo $row['symptom_id']; ?>" class="btn bg-orange btn-flat"><i class="fa fa-fw fa-edit"></i></a>
-                      <a href="symptom.php?delete=<?php echo $row['symptom_id']; ?>" class="btn btn-danger btn-flat"><span class="glyphicon glyphicon-trash"></span></a>
+                      <a href="symptom.php?delete=<?php echo $row['symptom_id']; ?>" onclick="return confirm('คุณต้องการที่จะลบข้อมูลนี้หรือไม่?')" class="btn btn-danger btn-flat"><span class="glyphicon glyphicon-trash"></span></a>
+                  
                     </td>
                   </tr>
                   <?php $i++; ?>

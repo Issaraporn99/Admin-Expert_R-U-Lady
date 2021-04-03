@@ -74,17 +74,19 @@ include('includes/header.php');
             </div>
             <!-- select -->
             <!-- select -->
+            <div class="row">
+              <div class="col-md-5 ml-2"><br>
+                <label>คำถามนำ</label>
+                <select name="before_id" class="form-control select2">
+                  <option value="0"><?php echo "ไม่มี"; ?></option>
+                  <?php foreach ($resultBf as $results) { ?>
+                    <option value="<?php echo $results['before_id']; ?>"><?php echo $results['before_ques']; ?></option>
+                  <?php } ?>
+                </select>
+                <a href="beforeSym.php"><i class="fa fa-save ml-1 mt-4"></i> เพิ่มคำถามนำ</a>
+              </div>
 
-            <div class="col-md-5 ml-2"><br>
-              <label>คำถามนำ</label>
-              <select name="before_id" class="form-control select2">
-                <option value="0"><?php echo "ไม่มี"; ?></option>
-                <?php foreach ($resultBf as $results) { ?>
-                  <option value="<?php echo $results['before_id']; ?>"><?php echo $results['before_ques']; ?></option>
-                <?php } ?>
-              </select>
             </div>
-
             <!-- select -->
             <div class="col-md-6 ml-2"> <br>
               <input type="hidden" name="symptom_id" value="<?php echo $symptom_id; ?>">

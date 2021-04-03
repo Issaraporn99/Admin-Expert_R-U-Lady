@@ -83,21 +83,37 @@
                 window.location = 'addDisSym.php';
             });
         </script>
-    <?php
+        <?php
     }
 
     if (isset($_GET['delete'])) {
         $disease_id = $_GET['delete'];
-        $mysqli->query("DELETE FROM disease WHERE disease_id=$disease_id") or die($mysqli->error());
+        $result = $mysqli->query("SELECT count(`disease_id`) AS c FROM `articles_disease` WHERE `disease_id` = $disease_id")  or die($mysqli->error());;
+        $result2 = $mysqli->query("SELECT count(`disease_id`) AS cc FROM `disease_symptoms` WHERE `disease_id` = $disease_id")  or die($mysqli->error());;
 
-    ?>
-        <script type='text/javascript'>
-            swal("สำเร็จ!", "ลบข้อมูลสำเร็จ", "success").then(function() {
-                window.location = 'index4.php';
-            });
-        </script>
-    <?php
+        foreach ($result as $results)
+            $del = $results['c'];
 
+        foreach ($result2 as $resultss)
+            $del2 = $resultss['cc'];
+        if ($del == 0 && $del2 == 0) {
+            $mysqli->query("DELETE FROM disease WHERE disease_id=$disease_id") or die($mysqli->error());
+        ?>
+            <script type='text/javascript'>
+                swal("สำเร็จ!", "ลบข้อมูลสำเร็จ", "success").then(function() {
+                    window.location = 'index4.php';
+                });
+            </script>
+        <?php
+        } else {
+        ?>
+            <script type='text/javascript'>
+                swal("แจ้งเตือน!", "ไม่สามารถลบข้อมูลได้เนื่องจากมีข้อมูลสัมพันธ์กัน", "warning").then(function() {
+                    window.location = 'index4.php';
+                });
+            </script>
+        <?php
+        }
     }
 
     if (isset($_GET['edit'])) {
@@ -141,7 +157,7 @@
                                        expertise_id='$expertise_id',
                                        no='$no'
                     WHERE disease_id=$disease_id") or die($mysqli->error);
-    ?>
+        ?>
         <script type='text/javascript'>
             swal("สำเร็จ!", "แก้ไขข้อมูลสำเร็จ", "success").then(function() {
                 window.location = 'index4.php';

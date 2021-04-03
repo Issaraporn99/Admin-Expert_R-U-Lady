@@ -55,7 +55,7 @@ include('includes/header.php');
                                         ยืนยันการสมัคร</a>               
                                     <?php
                                     } else {   ?>
-                                        <a href="apiIndex6.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger btn-flat">
+                                        <a href="apiIndex6.php?delete=<?php echo $row['id']; ?>" onclick="return confirm('คุณต้องการที่จะลบข้อมูลนี้หรือไม่?')" class="btn btn-danger btn-flat">
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </a>
                                     <?php } ?>

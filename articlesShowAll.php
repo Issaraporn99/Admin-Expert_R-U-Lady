@@ -38,10 +38,10 @@ if (!$_SESSION['userid']) {
                         </thead>
                         <tbody>
                             <?php
-                            while ($row = $result->fetch_assoc()) : ?>
+                            while ($row = $result->fetch_assoc()) : $date = date_create($row['issue_date']);?>
                                 <tr>
                                     <td><?php echo $i; ?></td>
-                                    <td><?php echo $row['issue_date']; ?></td>
+                                    <td><?php echo date_format($date, 'd/m/Y H:i:s');?></td>
                                     <td><?php echo $row['topic']; ?></td>
                                     <td>
                                         <button type="button" class="btn btn-info " data-toggle="modal" data-target="#exampleModal<?php echo $row['articles_id']; ?>">
@@ -57,7 +57,7 @@ if (!$_SESSION['userid']) {
                                                         <h5 class="modal-title" id="exampleModalLabel">
                                                             <h3><?php echo $row['topic']; ?></h3>
                                                         </h5>
-                                                        <p>วันที่เขียน <?php echo $row['issue_date']; ?></p>
+                                                        <p>วันที่เขียน <?php echo date_format($date, 'd/m/Y H:i:s'); ?></p>
                                                     </div>
 
                                                     <div class="modal-body">

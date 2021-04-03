@@ -74,7 +74,7 @@ include('includes/navbar.php');
                                         <td>
                                             <a href="editSymDis.php?edit=<?php echo $row['disease_id']; ?>" class="btn bg-orange btn-flat"><i class="fa fa-fw fa-edit"></i>
                                             </a>
-                                            <a href="apiAD.php?delete2=<?php echo $row['symptom_id']; ?>" class="btn btn-danger btn-flat"><span class="glyphicon glyphicon-trash"></span>
+                                            <a href="apiAD.php?delete2=<?php echo $row['symptom_id']; ?>" onclick="return confirm('คุณต้องการที่จะลบข้อมูลนี้หรือไม่?')" class="btn btn-danger btn-flat"><span class="glyphicon glyphicon-trash"></span>
                                             </a>
                                         </td>
                                     </tr>
