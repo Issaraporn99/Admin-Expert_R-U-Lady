@@ -121,9 +121,11 @@ if (!$_SESSION['userid']) {
 
                                                                             <?php while ($row2 = $result2->fetch_assoc()) : $date = date_create($row2['answer_date']); ?>
 
-                                                                                <div class="post-comment">
-                                                                                    <div class="row">
-                                                                                        <p class="profile-link namedt">ผู้ตอบ : <?php echo $row2['doctorname']; ?>
+                                                                                <div class="post-comment"  style="background-color:white;padding:10px;">
+                                                                                    <div class="row" style="margin:5%;">
+                                                                                        <p class="profile-link namedt">
+                                                                                        
+                                                                                        ผู้ตอบ : <?php echo $row2['doctorname'];?>
                                                                                             <?php if ($row2['id'] == $_SESSION['userid']) { ?>
                                                                                                 <a href="QA.php?edit=<?php echo $row2['answer_id']; ?>">
                                                                                                     <i class="fa fa-fw fa-edit"></i>
@@ -160,7 +162,7 @@ if (!$_SESSION['userid']) {
                                                                                     <input type="hidden" name="answer_date" value="<?php echo $answer_date; ?>">
 
                                                                                 </div>
-                                                                                <button type="submit" class="btn bg-navy btn-flat fl" name="save">ตอบ</button>
+                                                                                <button type="submit" class="btn bg-olive btn-flat fl" name="save">ตอบ</button>
                                                                             </form>
                                                                         </div>
 

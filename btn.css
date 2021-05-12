@@ -75,6 +75,9 @@ body {
  .fr{
     float: right;
  }
+ .fb{
+    margin-top: 380px;
+ }
  .post-content{
    background: #f8f8f8;
    border-radius: 4px;
@@ -147,7 +150,7 @@ body {
     color: dodgerblue;
  }
  .namedt{
-   color: brown;
+   color: #e2703a;
 }
  .fl{
     float: right;

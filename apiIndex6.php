@@ -74,12 +74,10 @@
     }
     if (isset($_GET['delete2'])) {
         $question_id = $_GET['delete2'];
-        $result = $mysqli->query("SELECT count(`question_id`) AS c FROM `answer` WHERE `question_id` = $question_id")  or die($mysqli->error());
+        $result = $mysqli->query("SELECT * FROM `answer` WHERE `question_id` = $question_id")  or die($mysqli->error());
         foreach ($result as $results)
-            $del = $results['c'];
+            $del = $results['question_id'];
 
-
-        if ($del == 0) {
             $mysqli->query("DELETE FROM question WHERE question_id=$question_id") or die($mysqli->error());
         ?>
             <script type='text/javascript'>
@@ -88,15 +86,8 @@
                 });
             </script>
         <?php
-        } else {
-        ?>
-            <script type='text/javascript'>
-                swal("แจ้งเตือน!", "ไม่สามารถลบข้อมูลได้เนื่องจากมีข้อมูลสัมพันธ์กัน", "warning").then(function() {
-                    window.location = 'question.php';
-                });
-            </script>
-    <?php
-        }
+         $mysqli->query("DELETE FROM answer WHERE question_id=$del") or die($mysqli->error());
+        
     }
     ?>
 </body>
